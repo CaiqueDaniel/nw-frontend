@@ -1,29 +1,16 @@
 import { PropsWithChildren, useMemo } from 'react';
-import Keycloak from 'keycloak-js';
 
 import { AuthMiddlewareContext } from './infra/middlewares/AuthMiddleware/AuthMiddlewareContext';
-import { KeycloakAccessTokenManager } from './infra/services/KeycloakAccessTokenManager';
 import { useGlobalAccessToken } from './infra/hooks/useGlobalAccessToken';
 import { NavbarContext } from './infra/features/Navbar/NavbarContext';
 import { useGlobalUserRoles } from './infra/hooks/useGlobalUserRoles';
-import { JWTDecoderTokenDecoderService } from './infra/services/JWTDecoderTokenDecoderService';
+import { MemoryAccessTokenManager } from './infra/services/MemoryAccessTokenManager';
+import { MemoryJWTDecoderTokenService } from './infra/services/MemoryJWTDecoderTokenService';
 
 export function SharedProviders({ children }: PropsWithChildren) {
-  //const isDevEnv = import.meta.env.VITE_ENV === 'development';
-  const tokenManager = useMemo(
-    () =>
-      new KeycloakAccessTokenManager(
-        new Keycloak({
-          url: import.meta.env.VITE_KC_SERVER,
-          realm: import.meta.env.VITE_KC_REALM,
-          clientId: import.meta.env.VITE_KC_CLIENT_ID,
-        })
-      ),
-    []
-  );
-
+  const tokenManager = useMemo(() => new MemoryAccessTokenManager(), []);
   const tokenDecoderService = useMemo(
-    () => new JWTDecoderTokenDecoderService(),
+    () => new MemoryJWTDecoderTokenService(),
     []
   );
 

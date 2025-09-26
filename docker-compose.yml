@@ -1,0 +1,15 @@
+services:
+  nw-frontend:
+    image: node:22-alpine
+    working_dir: /app
+    container_name: nw-frontend
+    stdin_open: true
+    tty: true
+    entrypoint: ["sh"]
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+    environment:
+      VITE_ENV: "${VITE_ENV:-development}"
+      VITE_BASE_API_URL: "${VITE_BASE_API_URL:-http://localhost:8080}"

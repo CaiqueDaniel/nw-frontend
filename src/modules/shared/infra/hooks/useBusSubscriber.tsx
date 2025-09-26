@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BusSubscriber } from '../../core/application/BusSubscriber';
+import { BusSubscriber } from '../../application/BusSubscriber';
 
 export function useBusSubscriber({ bus, eventName, handler }: Props) {
   const [updatedAt] = useState<number>(new Date().getTime());

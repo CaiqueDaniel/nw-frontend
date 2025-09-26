@@ -1,8 +1,8 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { PropsWithChildren } from 'react';
 import { Mocked } from 'vitest';
-import { AccessTokenManager } from '~/modules/shared/core/application/AccessTokenManager';
-import { TokenDecoderService } from '~/modules/shared/core/application/TokenDecoderService';
+import { AccessTokenManager } from '~/modules/shared/application/AccessTokenManager';
+import { TokenDecoderService } from '~/modules/shared/application/TokenDecoderService';
 import { AuthMiddlewareContext } from '~/modules/shared/infra/middlewares/AuthMiddleware/AuthMiddlewareContext';
 import { useAuthMiddlewarePresenter } from '~/modules/shared/infra/middlewares/AuthMiddleware/useAuthMiddlewarePresenter';
 

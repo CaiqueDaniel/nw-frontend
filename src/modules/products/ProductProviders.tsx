@@ -6,7 +6,7 @@ import { ProductFormContext } from './features/ProductForm/ProductFormContext';
 import { EventBus } from '../shared/infra/services/EventBus';
 import { ModalContext } from '../shared/infra/features/Modal/ModalContext';
 import { ProductActionBarContext } from './features/ProductActionBar/ProductActionBarContext';
-import { OpenModal } from '../shared/core/application/OpenModal';
+import { OpenModal } from '../shared/application/OpenModal';
 import { OpenProductModalInEditMode } from './application/OpenProductModalInEditMode';
 import { GetProduct } from './application/GetProduct';
 import { ProductTokenBoxContext } from './features/ProductTokenBox/ProductTokenBoxContext';

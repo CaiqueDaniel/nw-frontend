@@ -3,7 +3,7 @@ import { ProductRepository } from '../domain/ProductRepository';
 import { APIProductResponse } from '../types/APIProductResponse';
 import { Product } from '../domain/Product';
 import { PaginatedResponse } from '~/modules/shared/types/PaginatedResponse';
-import { PayloadMapper } from '~/modules/shared/core/application/PayloadMapper';
+import { PayloadMapper } from '~/modules/shared/application/PayloadMapper';
 import { APISubscribedProductResponse } from '../types/APISubscribedProductResponse';
 
 export function useRTKProductGateway(

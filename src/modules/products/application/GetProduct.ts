@@ -1,6 +1,6 @@
-import { UseCase } from '~/modules/shared/core/application/UseCase';
+import { UseCase } from '~/modules/shared/application/UseCase';
 import { ProductRepository } from '../domain/ProductRepository';
-import { NotFoundError } from '~/modules/shared/core/application/NotFoundError';
+import { NotFoundError } from '~/modules/shared/application/NotFoundError';
 
 export class GetProduct implements UseCase<Input, Promise<Output>> {
   constructor(private repository: ProductRepository) {}

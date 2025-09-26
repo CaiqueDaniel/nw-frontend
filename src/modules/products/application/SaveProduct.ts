@@ -1,7 +1,7 @@
-import { UseCase } from '~/modules/shared/core/application/UseCase';
+import { UseCase } from '~/modules/shared/application/UseCase';
 import { ProductRepository } from '../domain/ProductRepository';
 import { Product } from '../domain/Product';
-import { BusDispacher } from '~/modules/shared/core/application/BusDispacher';
+import { BusDispacher } from '~/modules/shared/application/BusDispacher';
 
 export class SaveProduct implements UseCase<SaveProductInput, Promise<void>> {
   constructor(

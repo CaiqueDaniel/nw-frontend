@@ -1,5 +1,5 @@
-import { BusDispacher } from '~/modules/shared/core/application/BusDispacher';
-import { UseCase } from '~/modules/shared/core/application/UseCase';
+import { BusDispacher } from '~/modules/shared/application/BusDispacher';
+import { UseCase } from '~/modules/shared/application/UseCase';
 
 export class OpenProductModalInEditMode implements UseCase<Input, void> {
   constructor(private readonly busDispatcher: BusDispacher) {}

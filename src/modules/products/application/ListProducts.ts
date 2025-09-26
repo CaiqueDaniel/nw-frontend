@@ -1,4 +1,4 @@
-import { UseCase } from "../../shared/core/application/UseCase";
+import { UseCase } from "../../shared/application/UseCase";
 import { ProductRepository } from "../domain/ProductRepository";
 
 export class ListProducts implements UseCase<void, Promise<ListProductsOutput>> {

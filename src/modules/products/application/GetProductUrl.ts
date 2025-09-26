@@ -1,7 +1,7 @@
-import { UseCase } from '~/modules/shared/core/application/UseCase';
+import { UseCase } from '~/modules/shared/application/UseCase';
 import { ProductRepository } from '../domain/ProductRepository';
 import { ProductCheckoutService } from './ProductCheckoutService';
-import { NotFoundError } from '~/modules/shared/core/application/NotFoundError';
+import { NotFoundError } from '~/modules/shared/application/NotFoundError';
 
 export class GetProductUrl
   implements UseCase<AccessProductInput, Promise<string>>

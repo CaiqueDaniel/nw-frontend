@@ -2,7 +2,7 @@ import { Mocked } from 'vitest';
 import { GetProduct } from '~/modules/products/application/GetProduct';
 import { Product } from '~/modules/products/domain/Product';
 import { ProductRepository } from '~/modules/products/domain/ProductRepository';
-import { NotFoundError } from '~/modules/shared/core/application/NotFoundError';
+import { NotFoundError } from '~/modules/shared/application/NotFoundError';
 
 describe('GetProduct unit tests', () => {
   let sut: GetProduct;

@@ -1,5 +1,5 @@
 import Keycloak from 'keycloak-js';
-import { UnableToGetAccessTokenError } from '~/modules/shared/core/application/UnableToGetAccessTokenError';
+import { UnableToGetAccessTokenError } from '~/modules/shared/application/UnableToGetAccessTokenError';
 import { KeycloakAccessTokenManager } from '~/modules/shared/infra/services/KeycloakAccessTokenManager';
 
 describe('KeycloakAccessTokenManager integration tests', () => {

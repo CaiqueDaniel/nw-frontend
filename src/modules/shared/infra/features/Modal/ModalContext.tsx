@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 import { useContextHandler } from '../../hooks/useContextHandler';
-import { BusSubscriber } from '~/modules/shared/core/application/BusSubscriber';
+import { BusSubscriber } from '~/modules/shared/application/BusSubscriber';
 
 export const ModalContext = createContext<Context | undefined>(undefined);
 

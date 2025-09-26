@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { PropsWithChildren } from 'react';
 import { Mocked } from 'vitest';
-import { AccessTokenManager } from '~/modules/shared/core/application/AccessTokenManager';
+import { AccessTokenManager } from '~/modules/shared/application/AccessTokenManager';
 import { NavbarContext } from '~/modules/shared/infra/features/Navbar/NavbarContext';
 import { useNavbarPresenter } from '~/modules/shared/infra/features/Navbar/useNavbarPresenter';
 

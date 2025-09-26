@@ -1,4 +1,4 @@
-import { UserRolesCheckService } from '../../core/application/UserRolesCheckService';
+import { UserRolesCheckService } from '../../application/UserRolesCheckService';
 
 export class LocalUserRolesCheckService implements UserRolesCheckService {
   constructor(private readonly sourceRoles: string[]) {}

@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { TextClipboardService } from '~/modules/shared/core/application/ClipboardService';
+import { TextClipboardService } from '~/modules/shared/application/ClipboardService';
 import { useContextHandler } from '~/modules/shared/infra/hooks/useContextHandler';
 
 export const ProductTokenBoxContext = createContext<Context | undefined>(

@@ -3,7 +3,7 @@ import { GetProductUrl } from '~/modules/products/application/GetProductUrl';
 import { ProductCheckoutService } from '~/modules/products/application/ProductCheckoutService';
 import { Product } from '~/modules/products/domain/Product';
 import { ProductRepository } from '~/modules/products/domain/ProductRepository';
-import { NotFoundError } from '~/modules/shared/core/application/NotFoundError';
+import { NotFoundError } from '~/modules/shared/application/NotFoundError';
 
 describe('GetProductUrl use case unit', () => {
   let sut: GetProductUrl;

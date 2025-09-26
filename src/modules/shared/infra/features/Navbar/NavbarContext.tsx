@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { AccessTokenManager } from '~/modules/shared/core/application/AccessTokenManager';
+import { AccessTokenManager } from '~/modules/shared/application/AccessTokenManager';
 import { useContextHandler } from '../../hooks/useContextHandler';
 
 export const NavbarContext = createContext<Context | undefined>(undefined);

@@ -1,7 +1,7 @@
 import { createContext } from 'react';
-import { AccessTokenManager } from '~/modules/shared/core/application/AccessTokenManager';
+import { AccessTokenManager } from '~/modules/shared/application/AccessTokenManager';
 import { useContextHandler } from '../../hooks/useContextHandler';
-import { TokenDecoderService } from '~/modules/shared/core/application/TokenDecoderService';
+import { TokenDecoderService } from '~/modules/shared/application/TokenDecoderService';
 
 export const AuthMiddlewareContext = createContext<Context | undefined>(
   undefined

@@ -2,7 +2,7 @@ import { Mocked } from 'vitest';
 import { SaveProduct } from '~/modules/products/application/SaveProduct';
 import { Product } from '~/modules/products/domain/Product';
 import { MemoryProductRepository } from '~/modules/products/repositories/MemoryProductRepository';
-import { BusDispacher } from '~/modules/shared/core/application/BusDispacher';
+import { BusDispacher } from '~/modules/shared/application/BusDispacher';
 
 describe('SaveProduct unit tests', () => {
   let sut: SaveProduct;

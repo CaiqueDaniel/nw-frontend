@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { UserRolesCheckService } from '../../core/application/UserRolesCheckService';
+import { UserRolesCheckService } from '../../application/UserRolesCheckService';
 import { selectUserRoles } from '~/config/rtkquery/accessTokenSlice';
 import { LocalUserRolesCheckService } from '../services/LocalUserRolesCheckService';
 

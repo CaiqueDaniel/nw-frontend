@@ -1,5 +1,5 @@
 import { OpenProductModalInEditMode } from '~/modules/products/application/OpenProductModalInEditMode';
-import { BusDispacher } from '~/modules/shared/core/application/BusDispacher';
+import { BusDispacher } from '~/modules/shared/application/BusDispacher';
 
 describe('OpenProductModalInEditMode use case unit tests', () => {
   let sut: OpenProductModalInEditMode;

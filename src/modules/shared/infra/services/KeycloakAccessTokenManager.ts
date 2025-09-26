@@ -1,7 +1,7 @@
 import Keycloak from 'keycloak-js';
 
-import { AccessTokenManager } from '../../core/application/AccessTokenManager';
-import { UnableToGetAccessTokenError } from '../../core/application/UnableToGetAccessTokenError';
+import { AccessTokenManager } from '../../application/AccessTokenManager';
+import { UnableToGetAccessTokenError } from '../../application/UnableToGetAccessTokenError';
 
 export class KeycloakAccessTokenManager implements AccessTokenManager {
   private tokenProvided = false;

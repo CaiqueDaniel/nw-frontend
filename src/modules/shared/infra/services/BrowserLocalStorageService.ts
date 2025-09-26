@@ -1,4 +1,4 @@
-import { StorageService } from '../../core/application/StorageService';
+import { StorageService } from '../../application/StorageService';
 
 export class BrowserLocalStorageService<T> implements StorageService<T> {
   constructor(private readonly storageName: string) {}

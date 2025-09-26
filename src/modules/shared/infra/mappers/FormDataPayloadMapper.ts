@@ -1,4 +1,4 @@
-import { PayloadMapper } from '../../core/application/PayloadMapper';
+import { PayloadMapper } from '../../application/PayloadMapper';
 
 export class FormDataPayloadMapper implements PayloadMapper<FormData> {
   transform(input: Record<string, any>): FormData {

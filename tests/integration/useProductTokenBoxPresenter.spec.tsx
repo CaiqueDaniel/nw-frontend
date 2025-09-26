@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react';
 import { Mocked } from 'vitest';
 import { ProductTokenBoxContext } from '~/modules/products/features/ProductTokenBox/ProductTokenBoxContext';
 import { useProductTokenBoxPresenter } from '~/modules/products/features/ProductTokenBox/useProductTokenBoxPresenter';
-import { TextClipboardService } from '~/modules/shared/core/application/ClipboardService';
+import { TextClipboardService } from '~/modules/shared/application/ClipboardService';
 
 describe('useProductTokenBoxPresenter unit tests', () => {
   let clipboard: Mocked<TextClipboardService>;

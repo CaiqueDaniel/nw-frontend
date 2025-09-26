@@ -1,8 +1,8 @@
-import { BusDispacher } from '../../core/application/BusDispacher';
+import { BusDispacher } from '../../application/BusDispacher';
 import {
   BusSubscriber,
   BusHandler,
-} from '../../core/application/BusSubscriber';
+} from '../../application/BusSubscriber';
 
 export class EventBus implements BusSubscriber, BusDispacher {
   private readonly eventBuses = new Map<string, Map<string, BusHandler>>();

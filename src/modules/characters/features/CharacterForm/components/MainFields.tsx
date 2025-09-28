@@ -21,7 +21,7 @@ export function MainFields({ errors }: Props) {
           <Field
             as={TextField}
             name="Codename"
-            label="Codinome"
+            label="Apelido"
             fullWidth
             helperText={errors.Codename}
             error={Boolean(errors.Codename)}
@@ -29,7 +29,6 @@ export function MainFields({ errors }: Props) {
         </Grid2>
       </Grid2>
 
-      {/* Classificação */}
       <Grid2 container spacing={2} mb={3}>
         <Grid2 size={4}>
           <Field
@@ -66,7 +65,6 @@ export function MainFields({ errors }: Props) {
         </Grid2>
       </Grid2>
 
-      {/* Características físicas */}
       <Grid2 container spacing={2} mb={3}>
         <Grid2 size={4}>
           <Field
@@ -100,47 +98,49 @@ export function MainFields({ errors }: Props) {
         </Grid2>
       </Grid2>
 
-      {/* Descrição */}
-      <Grid2 container spacing={2} mb={3}>
-        <Grid2 size={6}>
-          <Field
-            as={TextField}
-            name="Personality"
-            label="Personalidade"
-            fullWidth
-            helperText={errors.Personality}
-            error={Boolean(errors.Personality)}
-          />
-        </Grid2>
-        <Grid2 size={6}>
-          <Field
-            as={TextField}
-            name="Appearance"
-            label="Aparência"
-            fullWidth
-            helperText={errors.Appearance}
-            error={Boolean(errors.Appearance)}
-          />
-        </Grid2>
-        <Grid2 size={12}>
-          <Field
-            as={TextField}
-            name="History"
-            label="História"
-            fullWidth
-            helperText={errors.History}
-            error={Boolean(errors.History)}
-          />
-        </Grid2>
-      </Grid2>
+      <Field
+        as={TextField}
+        name="Personality"
+        label="Personalidade"
+        fullWidth
+        helperText={errors.Personality}
+        error={Boolean(errors.Personality)}
+        sx={{ mb: 3 }}
+      />
 
-      {/* Progresso */}
+      <Field
+        as={TextField}
+        name="Appearance"
+        label="Aparência"
+        fullWidth
+        multiline
+        minRows={3}
+        maxRows={6}
+        helperText={errors.Appearance}
+        error={Boolean(errors.Appearance)}
+        sx={{ mb: 3 }}
+      />
+
+      <Field
+        as={TextField}
+        name="History"
+        label="História"
+        fullWidth
+        multiline
+        minRows={3}
+        maxRows={6}
+        helperText={errors.History}
+        error={Boolean(errors.History)}
+        sx={{ mb: 3 }}
+      />
+
       <Grid2 container spacing={2} mb={3}>
         <Grid2 size={3}>
           <Field
             as={TextField}
             name="Level"
             label="Nível"
+            required
             fullWidth
             helperText={errors.Level}
             error={Boolean(errors.Level)}
@@ -152,6 +152,7 @@ export function MainFields({ errors }: Props) {
             name="Experience"
             label="Experiência"
             fullWidth
+            required
             helperText={errors.Experience}
             error={Boolean(errors.Experience)}
           />
@@ -162,6 +163,7 @@ export function MainFields({ errors }: Props) {
             name="Sanity"
             label="Sanidade"
             fullWidth
+            required
             helperText={errors.Sanity}
             error={Boolean(errors.Sanity)}
           />
@@ -172,6 +174,7 @@ export function MainFields({ errors }: Props) {
             name="Money"
             label="Dinheiro"
             fullWidth
+            required
             helperText={errors.Money}
             error={Boolean(errors.Money)}
           />

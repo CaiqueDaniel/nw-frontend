@@ -3,6 +3,7 @@ import { Field } from 'formik';
 import { Form } from '~/modules/shared/infra/components/Form/Form';
 import { CharacterSectionFormData } from '../CharacterFormData';
 import { FormSubmitControls } from './FormSubmitControls';
+import { IntegerField } from '~/modules/shared/infra/components/IntegerField';
 
 export function MainFields({ initialValues, onSubmit, validation }: Props) {
   return (
@@ -76,7 +77,7 @@ export function MainFields({ initialValues, onSubmit, validation }: Props) {
           <Grid2 container spacing={2} mb={3}>
             <Grid2 size={4}>
               <Field
-                as={TextField}
+                as={IntegerField}
                 name="Age"
                 label="Idade"
                 fullWidth
@@ -145,7 +146,7 @@ export function MainFields({ initialValues, onSubmit, validation }: Props) {
           <Grid2 container spacing={2} mb={3}>
             <Grid2 size={3}>
               <Field
-                as={TextField}
+                as={IntegerField}
                 name="Level"
                 label="Nível"
                 required
@@ -156,7 +157,7 @@ export function MainFields({ initialValues, onSubmit, validation }: Props) {
             </Grid2>
             <Grid2 size={3}>
               <Field
-                as={TextField}
+                as={IntegerField}
                 name="Experience"
                 label="Experiência"
                 fullWidth
@@ -167,7 +168,7 @@ export function MainFields({ initialValues, onSubmit, validation }: Props) {
             </Grid2>
             <Grid2 size={3}>
               <Field
-                as={TextField}
+                as={IntegerField}
                 name="Sanity"
                 label="Sanidade"
                 fullWidth

@@ -10,7 +10,7 @@ export function CharacterActionBar() {
       <Button
         color="primary"
         variant="contained"
-        onClick={() => navigator.navigateTo('/products/new')}
+        onClick={() => navigator.navigateTo('personagens/novo')}
         sx={{ borderRadius: 50 }}
         startIcon={<Add />}
       >

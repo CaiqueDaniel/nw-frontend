@@ -1,4 +1,4 @@
-import { Box, Typography, Grid2, TextField } from '@mui/material';
+import { Box, Grid2, TextField } from '@mui/material';
 import { Field } from 'formik';
 import { CharacterFormData } from '~/modules/characters/domain/Character';
 
@@ -6,9 +6,6 @@ export function AttributesFields({ errors }: Props) {
   return (
     <>
       <Box mt={4} mb={2}>
-        <Typography fontWeight="bold" fontSize="16px" mb={2}>
-          Atributos
-        </Typography>
         <Grid2 container spacing={2}>
           <Grid2 size={4}>
             <Field

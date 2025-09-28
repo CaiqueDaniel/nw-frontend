@@ -1,8 +1,7 @@
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import { SharedProviders } from './modules/shared/SharedProviders';
 import { AuthMiddleware } from './modules/shared/infra/middlewares/AuthMiddleware/AuthMiddleware';
-import { CharactersProviders } from './modules/characters/CharactersProviders';
-import { CharactersHomePage } from './modules/characters/pages/CharactersHomePage';
+import { CharactersRouter } from './modules/characters/CharactersRouter';
 
 export function Router() {
   const router = createBrowserRouter([
@@ -15,16 +14,7 @@ export function Router() {
           </AuthMiddleware>
         </SharedProviders>
       ),
-      children: [
-        {
-          path: '',
-          element: (
-            <CharactersProviders>
-              <CharactersHomePage />
-            </CharactersProviders>
-          ),
-        },
-      ],
+      children: [...CharactersRouter],
     },
   ]);
 

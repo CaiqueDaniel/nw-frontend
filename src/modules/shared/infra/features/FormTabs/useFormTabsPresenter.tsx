@@ -2,17 +2,11 @@ import { ReactNode, useState } from 'react';
 
 export function useFormTabsPresenter({ children }: Props) {
   const [selectedChildrenIndex, setSelectedChildrenIndex] = useState(0);
-  const [selectedChildren, setSelectedChildren] = useState<ReactNode>(
-    children.at(0) || null
-  );
 
-  const onChange = (index: number) => {
-    setSelectedChildren(children[index]);
-    setSelectedChildrenIndex(index);
-  };
+  const onChange = (index: number) => setSelectedChildrenIndex(index);
 
   return {
-    selectedChildren,
+    selectedChildren: children.at(selectedChildrenIndex),
     selectedChildrenIndex,
     onChange,
   };

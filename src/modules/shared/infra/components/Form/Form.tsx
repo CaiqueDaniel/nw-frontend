@@ -12,7 +12,6 @@ export function Form<I extends Record<string, any>>({
       initialValues={initialValues}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
-      isInitialValid
     >
       {({ errors, setFieldValue }) => (
         <FormikForm>

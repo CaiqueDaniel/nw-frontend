@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useCharacterFormContext } from './CharacterFormContext';
 import { CharacterFormData } from '../../domain/CharacterFactory';
-import { mixed, object, string } from 'yup';
+import { number, object, string } from 'yup';
 import { Character } from '../../domain/Character';
 
 export function useCharacterFormPresenter({ characterId }: Props) {
@@ -109,17 +109,47 @@ const emptyValues: CharacterFormData = {
     ResourceId: '',
   },
 };
+
 const validation = object({
-  name: string()
+  BreedId: string().required('Campo obrigatório'),
+  ClassId: string().required('Campo obrigatório'),
+  RankingId: string().required('Campo obrigatório'),
+  Name: string()
     .required('Campo obrigatório')
     .max(255, 'Máximo de 255 caracteres'),
-  description: string()
+  Codename: string().max(255, 'Máximo de 255 caracteres'),
+  Age: number().min(1, 'Valor mínimo de 1').integer('Apenas números inteiros'),
+  Weight: number().min(0.01, 'Valor mínimo de 0.01'),
+  Height: number().min(0.01, 'Valor mínimo de 0.01'),
+  Personality: string().max(255, 'Máximo de 255 caracteres'),
+  Appearance: string().max(25000, 'Máximo de 25000 caracteres'),
+  History: string().max(25000, 'Máximo de 25000 caracteres'),
+  Money: number().required('Campo obrigatório'),
+  Level: number()
     .required('Campo obrigatório')
-    .max(255, 'Máximo de 255 caracteres'),
-  address: string()
+    .min(1, 'Valor mínimo de 1')
+    .integer('Apenas números inteiros'),
+  Experience: number()
     .required('Campo obrigatório')
-    .max(2000, 'Máximo de 2000 caracteres'),
-  cover: mixed().required('Campo obrigatório'),
+    .min(1, 'Valor mínimo de 1')
+    .integer('Apenas números inteiros'),
+  Sanity: number()
+    .required('Campo obrigatório')
+    .min(1, 'Valor mínimo de 1')
+    .integer('Apenas números inteiros'),
+  Attributes: object({
+    Strength: string().required('Campo obrigatório'),
+    Speed: string().required('Campo obrigatório'),
+    Dexterity: string().required('Campo obrigatório'),
+    Vitality: string().required('Campo obrigatório'),
+    Potency: string().required('Campo obrigatório'),
+    Conjuration: string().required('Campo obrigatório'),
+    Control: string().required('Campo obrigatório'),
+    MagicResistance: string().required('Campo obrigatório'),
+    Psyche: string().required('Campo obrigatório'),
+    ResourceType: string().required('Campo obrigatório'),
+    ResourceId: string().required('Campo obrigatório'),
+  }),
 });
 
 type Props = {

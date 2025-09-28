@@ -5,7 +5,7 @@ describe('useCharacterFormPresenter', () => {
   it('should be able to handle when no children is provided', () => {
     const { result } = renderHook(() => useFormTabsPresenter({ children: [] }));
 
-    expect(result.current.selectedChildren).toBeNull();
+    expect(result.current.selectedChildren).toBeUndefined();
   });
 
   it('should be able to load first tab by default', () => {

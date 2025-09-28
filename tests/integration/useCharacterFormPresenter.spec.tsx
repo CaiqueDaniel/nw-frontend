@@ -10,13 +10,19 @@ import { LocalCharacterFactory } from '~/modules/characters/factories/LocalChara
 describe('useCharacterFormPresenter', () => {
   const options = { wrapper: Provider };
 
-  describe('create action', () => {
-    beforeAll(() => {
-      doubleCharacterRepository.get.mockResolvedValue(undefined);
-    });
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
 
-    it('should be able to load the form with empty values', async () => {
-      const expectedInitialValues = {
+  describe('MainFields form', () => {
+    it('should be able to render', () => {
+      const { result } = renderHook(
+        () => useCharacterFormPresenter({}),
+        options
+      );
+
+      expect(result.current.validationMain).toBeTruthy();
+      expect(result.current.charData).toEqual({
         BreedId: '',
         ClassId: '',
         RankingId: '',
@@ -32,19 +38,26 @@ describe('useCharacterFormPresenter', () => {
         Level: '',
         Experience: '',
         Sanity: '',
-        Attributes: {
-          Strength: '',
-          Speed: '',
-          Dexterity: '',
-          Vitality: '',
-          Potency: '',
-          Conjuration: '',
-          Control: '',
-          MagicResistance: '',
-          Psyche: '',
-          ResourceType: '',
-          ResourceId: '',
-        },
+      });
+    });
+
+    it('should be able to submit', async () => {
+      const payload = {
+        BreedId: '123',
+        ClassId: '234',
+        RankingId: '456',
+        Name: 'Name',
+        Codename: 'Codename',
+        Age: 'Age',
+        Weight: 'Weight',
+        Height: 'Height',
+        Personality: 'Personality',
+        Appearance: 'Appearance',
+        History: 'History',
+        Money: 'Money',
+        Level: 'Level',
+        Experience: 'Experience',
+        Sanity: 'Sanity',
       };
 
       const { result } = renderHook(
@@ -52,67 +65,116 @@ describe('useCharacterFormPresenter', () => {
         options
       );
 
-      expect(result.current.initialValues).toEqual(expectedInitialValues);
-      expect(result.current.isFetching).toBe(false);
-      expect(result.current.isSubmiting).toBe(false);
+      act(() => {
+        result.current.onSubmitCharSection(payload);
+      });
 
       await waitFor(() => {
-        expect(result.current.initialValues).toEqual(expectedInitialValues);
-        expect(result.current.isFetching).toBe(false);
-        expect(result.current.isSubmiting).toBe(false);
+        expect(result.current.charData).toEqual(payload);
       });
     });
   });
 
-  describe('update action', () => {
-    beforeAll(() => {
-      doubleCharacterRepository.get.mockResolvedValue(mockedCharacter);
-    });
-
-    it('should be able to load the form', async () => {
-      const expectedInitialValues = {
-        BreedId: mockedCharacter.BreedId,
-        ClassId: mockedCharacter.ClassId,
-        RankingId: String(mockedCharacter.RankingId),
-        Name: mockedCharacter.Name,
-        Codename: mockedCharacter.Codename,
-        Age: mockedCharacter.Age,
-        Weight: mockedCharacter.Weight,
-        Height: mockedCharacter.Height,
-        Personality: mockedCharacter.Personality,
-        Appearance: mockedCharacter.Appearance,
-        History: mockedCharacter.History,
-        Money: String(mockedCharacter.Money),
-        Level: String(mockedCharacter.Level),
-        Experience: String(mockedCharacter.Experience),
-        Sanity: String(mockedCharacter.Sanity),
-        Attributes: {
-          Strength: String(mockedCharacter.Attributes.Strength),
-          Speed: String(mockedCharacter.Attributes.Speed),
-          Dexterity: String(mockedCharacter.Attributes.Dexterity),
-          Vitality: String(mockedCharacter.Attributes.Vitality),
-          Potency: String(mockedCharacter.Attributes.Potency),
-          Conjuration: String(mockedCharacter.Attributes.Conjuration),
-          Control: String(mockedCharacter.Attributes.Control),
-          MagicResistance: String(mockedCharacter.Attributes.MagicResistance),
-          Psyche: String(mockedCharacter.Attributes.Psyche),
-          ResourceType: String(mockedCharacter.Attributes.ResourceType),
-          ResourceId: String(mockedCharacter.Attributes.ResourceId),
-        },
-      };
-
+  describe('AttributesFields form', () => {
+    it('should be able to render', () => {
       const { result } = renderHook(
-        () => useCharacterFormPresenter({ characterId: '123' }),
+        () => useCharacterFormPresenter({}),
         options
       );
 
-      expect(result.current.isFetching).toBe(true);
+      expect(result.current.attributesData).toEqual({
+        Strength: '',
+        Speed: '',
+        Dexterity: '',
+        Vitality: '',
+        Potency: '',
+        Conjuration: '',
+        Control: '',
+        MagicResistance: '',
+        Psyche: '',
+        ResourceType: '',
+        ResourceId: '',
+      });
+      expect(result.current.validationAttributes).toBeTruthy();
+    });
+
+    it('should be able to submit', async () => {
+      const payload = {
+        Strength: 'Strength',
+        Speed: 'Speed',
+        Dexterity: 'Dexterity',
+        Vitality: 'Vitality',
+        Potency: 'Potency',
+        Conjuration: 'Conjuration',
+        Control: 'Control',
+        MagicResistance: 'MagicResistance',
+        Psyche: 'Psyche',
+        ResourceType: 'ResourceType',
+        ResourceId: '789',
+      };
+
+      const { result } = renderHook(
+        () => useCharacterFormPresenter({}),
+        options
+      );
+
+      act(() => {
+        result.current.onSubmitAttrSection(payload);
+      });
 
       await waitFor(() => {
-        expect(result.current.initialValues).toEqual(expectedInitialValues);
-        expect(result.current.isFetching).toBe(false);
-        expect(result.current.isSubmiting).toBe(false);
+        expect(result.current.attributesData).toEqual(payload);
       });
+    });
+  });
+
+  it('should be able to load the form', async () => {
+    doubleCharacterRepository.get.mockResolvedValue(mockedCharacter);
+
+    const charData = {
+      BreedId: mockedCharacter.BreedId,
+      ClassId: mockedCharacter.ClassId,
+      RankingId: String(mockedCharacter.RankingId),
+      Name: mockedCharacter.Name,
+      Codename: mockedCharacter.Codename,
+      Age: mockedCharacter.Age,
+      Weight: mockedCharacter.Weight,
+      Height: mockedCharacter.Height,
+      Personality: mockedCharacter.Personality,
+      Appearance: mockedCharacter.Appearance,
+      History: mockedCharacter.History,
+      Money: String(mockedCharacter.Money),
+      Level: String(mockedCharacter.Level),
+      Experience: String(mockedCharacter.Experience),
+      Sanity: String(mockedCharacter.Sanity),
+    };
+
+    const attrData = {
+      Strength: String(mockedCharacter.Attributes.Strength),
+      Speed: String(mockedCharacter.Attributes.Speed),
+      Dexterity: String(mockedCharacter.Attributes.Dexterity),
+      Vitality: String(mockedCharacter.Attributes.Vitality),
+      Potency: String(mockedCharacter.Attributes.Potency),
+      Conjuration: String(mockedCharacter.Attributes.Conjuration),
+      Control: String(mockedCharacter.Attributes.Control),
+      MagicResistance: String(mockedCharacter.Attributes.MagicResistance),
+      Psyche: String(mockedCharacter.Attributes.Psyche),
+      ResourceType: String(mockedCharacter.Attributes.ResourceType),
+      ResourceId: String(mockedCharacter.Attributes.ResourceId),
+    };
+
+    const { result } = renderHook(
+      () => useCharacterFormPresenter({ characterId: '123' }),
+      options
+    );
+
+    expect(result.current.isFetching).toBe(true);
+
+    await waitFor(() => {
+      expect(result.current.charData).toEqual(charData);
+      expect(result.current.attributesData).toEqual(attrData);
+      expect(result.current.isFetching).toBe(false);
+      expect(result.current.isSubmiting).toBe(false);
     });
   });
 

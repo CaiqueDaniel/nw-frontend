@@ -1,139 +1,158 @@
 import { Box, Grid2, TextField } from '@mui/material';
 import { Field } from 'formik';
-import { CharacterFormData } from '~/modules/characters/domain/Character';
+import { AttribuitesFormData } from '~/modules/characters/domain/CharacterFactory';
+import { Form } from '~/modules/shared/infra/components/Form/Form';
+import { FormSubmitControls } from './FormSubmitControls';
 
-export function AttributesFields({ errors }: Props) {
+export function AttributesFields({
+  initialValues,
+  onSubmit,
+  validation,
+  isSubmiting,
+}: Props) {
   return (
-    <>
-      <Box mt={4} mb={2}>
-        <Grid2 container spacing={2}>
-          <Grid2 size={4}>
-            <Field
-              as={TextField}
-              name="Attributes.Strength"
-              label="Força"
-              fullWidth
-              helperText={errors.Attributes?.Strength}
-              error={Boolean(errors.Attributes?.Strength)}
-              sx={{ mb: 2 }}
-            />
-          </Grid2>
-          <Grid2 size={4}>
-            <Field
-              as={TextField}
-              name="Attributes.Speed"
-              label="Velocidade"
-              fullWidth
-              helperText={errors.Attributes?.Speed}
-              error={Boolean(errors.Attributes?.Speed)}
-              sx={{ mb: 2 }}
-            />
-          </Grid2>
-          <Grid2 size={4}>
-            <Field
-              as={TextField}
-              name="Attributes.Dexterity"
-              label="Destreza"
-              fullWidth
-              helperText={errors.Attributes?.Dexterity}
-              error={Boolean(errors.Attributes?.Dexterity)}
-              sx={{ mb: 2 }}
-            />
-          </Grid2>
-          <Grid2 size={4}>
-            <Field
-              as={TextField}
-              name="Attributes.Vitality"
-              label="Vitalidade"
-              fullWidth
-              helperText={errors.Attributes?.Vitality}
-              error={Boolean(errors.Attributes?.Vitality)}
-              sx={{ mb: 2 }}
-            />
-          </Grid2>
-          <Grid2 size={4}>
-            <Field
-              as={TextField}
-              name="Attributes.Potency"
-              label="Potência"
-              fullWidth
-              helperText={errors.Attributes?.Potency}
-              error={Boolean(errors.Attributes?.Potency)}
-              sx={{ mb: 2 }}
-            />
-          </Grid2>
-          <Grid2 size={4}>
-            <Field
-              as={TextField}
-              name="Attributes.Conjuration"
-              label="Conjuração"
-              fullWidth
-              helperText={errors.Attributes?.Conjuration}
-              error={Boolean(errors.Attributes?.Conjuration)}
-              sx={{ mb: 2 }}
-            />
-          </Grid2>
-          <Grid2 size={4}>
-            <Field
-              as={TextField}
-              name="Attributes.Control"
-              label="Controle"
-              fullWidth
-              helperText={errors.Attributes?.Control}
-              error={Boolean(errors.Attributes?.Control)}
-              sx={{ mb: 2 }}
-            />
-          </Grid2>
-          <Grid2 size={4}>
-            <Field
-              as={TextField}
-              name="Attributes.MagicResistance"
-              label="Resistência Mágica"
-              fullWidth
-              helperText={errors.Attributes?.MagicResistance}
-              error={Boolean(errors.Attributes?.MagicResistance)}
-              sx={{ mb: 2 }}
-            />
-          </Grid2>
-          <Grid2 size={4}>
-            <Field
-              as={TextField}
-              name="Attributes.Psyche"
-              label="Psique"
-              fullWidth
-              helperText={errors.Attributes?.Psyche}
-              error={Boolean(errors.Attributes?.Psyche)}
-              sx={{ mb: 2 }}
-            />
-          </Grid2>
-          <Grid2 size={6}>
-            <Field
-              as={TextField}
-              name="Attributes.ResourceType"
-              label="Tipo de Recurso"
-              fullWidth
-              helperText={errors.Attributes?.ResourceType}
-              error={Boolean(errors.Attributes?.ResourceType)}
-              sx={{ mb: 2 }}
-            />
-          </Grid2>
-          <Grid2 size={6}>
-            <Field
-              as={TextField}
-              name="Attributes.ResourceId"
-              label="ID do Recurso"
-              fullWidth
-              helperText={errors.Attributes?.ResourceId}
-              error={Boolean(errors.Attributes?.ResourceId)}
-              sx={{ mb: 2 }}
-            />
-          </Grid2>
-        </Grid2>
-      </Box>
-    </>
+    <Form<AttribuitesFormData>
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      validationSchema={validation}
+    >
+      {({ errors }) => (
+        <>
+          <Box mt={4} mb={2}>
+            <Grid2 container spacing={2}>
+              <Grid2 size={4}>
+                <Field
+                  as={TextField}
+                  name="Strength"
+                  label="Força"
+                  fullWidth
+                  helperText={errors.Strength}
+                  error={Boolean(errors.Strength)}
+                  sx={{ mb: 2 }}
+                />
+              </Grid2>
+              <Grid2 size={4}>
+                <Field
+                  as={TextField}
+                  name="Speed"
+                  label="Velocidade"
+                  fullWidth
+                  helperText={errors.Speed}
+                  error={Boolean(errors.Speed)}
+                  sx={{ mb: 2 }}
+                />
+              </Grid2>
+              <Grid2 size={4}>
+                <Field
+                  as={TextField}
+                  name="Dexterity"
+                  label="Destreza"
+                  fullWidth
+                  helperText={errors.Dexterity}
+                  error={Boolean(errors.Dexterity)}
+                  sx={{ mb: 2 }}
+                />
+              </Grid2>
+              <Grid2 size={4}>
+                <Field
+                  as={TextField}
+                  name="Vitality"
+                  label="Vitalidade"
+                  fullWidth
+                  helperText={errors.Vitality}
+                  error={Boolean(errors.Vitality)}
+                  sx={{ mb: 2 }}
+                />
+              </Grid2>
+              <Grid2 size={4}>
+                <Field
+                  as={TextField}
+                  name="Potency"
+                  label="Potência"
+                  fullWidth
+                  helperText={errors.Potency}
+                  error={Boolean(errors.Potency)}
+                  sx={{ mb: 2 }}
+                />
+              </Grid2>
+              <Grid2 size={4}>
+                <Field
+                  as={TextField}
+                  name="Conjuration"
+                  label="Conjuração"
+                  fullWidth
+                  helperText={errors.Conjuration}
+                  error={Boolean(errors.Conjuration)}
+                  sx={{ mb: 2 }}
+                />
+              </Grid2>
+              <Grid2 size={4}>
+                <Field
+                  as={TextField}
+                  name="Control"
+                  label="Controle"
+                  fullWidth
+                  helperText={errors.Control}
+                  error={Boolean(errors.Control)}
+                  sx={{ mb: 2 }}
+                />
+              </Grid2>
+              <Grid2 size={4}>
+                <Field
+                  as={TextField}
+                  name="MagicResistance"
+                  label="Resistência Mágica"
+                  fullWidth
+                  helperText={errors.MagicResistance}
+                  error={Boolean(errors.MagicResistance)}
+                  sx={{ mb: 2 }}
+                />
+              </Grid2>
+              <Grid2 size={4}>
+                <Field
+                  as={TextField}
+                  name="Psyche"
+                  label="Psique"
+                  fullWidth
+                  helperText={errors.Psyche}
+                  error={Boolean(errors.Psyche)}
+                  sx={{ mb: 2 }}
+                />
+              </Grid2>
+              <Grid2 size={6}>
+                <Field
+                  as={TextField}
+                  name="ResourceType"
+                  label="Tipo de Recurso"
+                  fullWidth
+                  helperText={errors.ResourceType}
+                  error={Boolean(errors.ResourceType)}
+                  sx={{ mb: 2 }}
+                />
+              </Grid2>
+              <Grid2 size={6}>
+                <Field
+                  as={TextField}
+                  name="ResourceId"
+                  label="ID do Recurso"
+                  fullWidth
+                  helperText={errors.ResourceId}
+                  error={Boolean(errors.ResourceId)}
+                  sx={{ mb: 2 }}
+                />
+              </Grid2>
+            </Grid2>
+          </Box>
+          <FormSubmitControls isSubmiting={isSubmiting} />
+        </>
+      )}
+    </Form>
   );
 }
 
 type Props = {
-  errors: Record<keyof CharacterFormData, string>;
+  onSubmit: (data: AttribuitesFormData) => void;
+  initialValues: AttribuitesFormData;
+  validation: any;
+  isSubmiting?: boolean;
 };

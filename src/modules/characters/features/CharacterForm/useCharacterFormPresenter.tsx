@@ -3,24 +3,27 @@ import { useCharacterFormContext } from './CharacterFormContext';
 import { CharacterFormData } from '../../domain/CharacterFactory';
 import { number, object, string } from 'yup';
 import { Character } from '../../domain/Character';
+import {
+  AttributesSectionFormData,
+  CharacterSectionFormData,
+} from './CharacterFormData';
 
 export function useCharacterFormPresenter({ characterId }: Props) {
   const { factory, repository } = useCharacterFormContext();
   const [isSubmiting, setIsSubmiting] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
-  const [initialValues, setInitialValues] =
-    useState<CharacterFormData>(emptyValues);
+  const [charData, setCharData] =
+    useState<CharacterSectionFormData>(emptyCharValues);
+  const [attributesData, setAttributesData] =
+    useState<AttributesSectionFormData>(emptyAttributesValues);
 
-  const onSubmit = async (values: CharacterFormData) => {
-    setIsSubmiting(true);
+  const onSubmitCharSection = (values: CharacterSectionFormData) => {
+    setCharData(values);
+  };
 
-    try {
-      await repository.save(factory.create(values));
-    } catch (error) {
-      console.error(error);
-    }
-
-    setIsSubmiting(false);
+  const onSubmitAttrSection = async (values: AttributesSectionFormData) => {
+    setAttributesData(values);
+    await onSubmit({ ...charData, Attributes: values });
   };
 
   useEffect(() => {
@@ -31,21 +34,40 @@ export function useCharacterFormPresenter({ characterId }: Props) {
     repository
       .get(characterId)
       .then((result) => {
-        if (result) setInitialValues(mapToFormData(result));
+        if (result) {
+          setCharData(mapToCharData(result));
+          setAttributesData(mapToAttrData(result));
+        }
       })
       .catch(console.error)
       .finally(() => setIsFetching(false));
   }, [characterId]);
 
   return {
-    initialValues,
     isSubmiting,
     isFetching,
-    validation,
+    validationMain,
+    validationAttributes,
+    attributesData,
+    charData,
+    onSubmitCharSection,
+    onSubmitAttrSection,
     onSubmit,
   };
 
-  function mapToFormData(character: Character): CharacterFormData {
+  async function onSubmit(values: CharacterFormData) {
+    setIsSubmiting(true);
+
+    try {
+      await repository.save(factory.create(values));
+    } catch (error) {
+      console.error(error);
+    }
+
+    setIsSubmiting(false);
+  }
+
+  function mapToCharData(character: Character): CharacterSectionFormData {
     return {
       BreedId: character.BreedId,
       ClassId: character.ClassId,
@@ -62,24 +84,27 @@ export function useCharacterFormPresenter({ characterId }: Props) {
       Level: String(character.Level),
       Experience: String(character.Experience),
       Sanity: String(character.Sanity),
-      Attributes: {
-        Strength: String(character.Attributes.Strength),
-        Speed: String(character.Attributes.Speed),
-        Dexterity: String(character.Attributes.Dexterity),
-        Vitality: String(character.Attributes.Vitality),
-        Potency: String(character.Attributes.Potency),
-        Conjuration: String(character.Attributes.Conjuration),
-        Control: String(character.Attributes.Control),
-        MagicResistance: String(character.Attributes.MagicResistance),
-        Psyche: String(character.Attributes.Psyche),
-        ResourceType: character.Attributes.ResourceType,
-        ResourceId: String(character.Attributes.ResourceId),
-      },
+    };
+  }
+
+  function mapToAttrData(character: Character): AttributesSectionFormData {
+    return {
+      Strength: String(character.Attributes.Strength),
+      Speed: String(character.Attributes.Speed),
+      Dexterity: String(character.Attributes.Dexterity),
+      Vitality: String(character.Attributes.Vitality),
+      Potency: String(character.Attributes.Potency),
+      Conjuration: String(character.Attributes.Conjuration),
+      Control: String(character.Attributes.Control),
+      MagicResistance: String(character.Attributes.MagicResistance),
+      Psyche: String(character.Attributes.Psyche),
+      ResourceType: character.Attributes.ResourceType,
+      ResourceId: String(character.Attributes.ResourceId),
     };
   }
 }
 
-const emptyValues: CharacterFormData = {
+const emptyCharValues: CharacterSectionFormData = {
   BreedId: '',
   ClassId: '',
   RankingId: '',
@@ -95,22 +120,23 @@ const emptyValues: CharacterFormData = {
   Level: '',
   Experience: '',
   Sanity: '',
-  Attributes: {
-    Strength: '',
-    Speed: '',
-    Dexterity: '',
-    Vitality: '',
-    Potency: '',
-    Conjuration: '',
-    Control: '',
-    MagicResistance: '',
-    Psyche: '',
-    ResourceType: '',
-    ResourceId: '',
-  },
 };
 
-const validation = object({
+const emptyAttributesValues = {
+  Strength: '',
+  Speed: '',
+  Dexterity: '',
+  Vitality: '',
+  Potency: '',
+  Conjuration: '',
+  Control: '',
+  MagicResistance: '',
+  Psyche: '',
+  ResourceType: '',
+  ResourceId: '',
+};
+
+const validationMain = object({
   BreedId: string().required('Campo obrigatório'),
   ClassId: string().required('Campo obrigatório'),
   RankingId: string().required('Campo obrigatório'),
@@ -137,19 +163,20 @@ const validation = object({
     .required('Campo obrigatório')
     .min(1, 'Valor mínimo de 1')
     .integer('Apenas números inteiros'),
-  Attributes: object({
-    Strength: string().required('Campo obrigatório'),
-    Speed: string().required('Campo obrigatório'),
-    Dexterity: string().required('Campo obrigatório'),
-    Vitality: string().required('Campo obrigatório'),
-    Potency: string().required('Campo obrigatório'),
-    Conjuration: string().required('Campo obrigatório'),
-    Control: string().required('Campo obrigatório'),
-    MagicResistance: string().required('Campo obrigatório'),
-    Psyche: string().required('Campo obrigatório'),
-    ResourceType: string().required('Campo obrigatório'),
-    ResourceId: string().required('Campo obrigatório'),
-  }),
+});
+
+const validationAttributes = object({
+  Strength: string().required('Campo obrigatório'),
+  Speed: string().required('Campo obrigatório'),
+  Dexterity: string().required('Campo obrigatório'),
+  Vitality: string().required('Campo obrigatório'),
+  Potency: string().required('Campo obrigatório'),
+  Conjuration: string().required('Campo obrigatório'),
+  Control: string().required('Campo obrigatório'),
+  MagicResistance: string().required('Campo obrigatório'),
+  Psyche: string().required('Campo obrigatório'),
+  ResourceType: string().required('Campo obrigatório'),
+  ResourceId: string().required('Campo obrigatório'),
 });
 
 type Props = {

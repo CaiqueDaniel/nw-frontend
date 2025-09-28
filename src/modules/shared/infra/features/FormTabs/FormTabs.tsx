@@ -1,11 +1,8 @@
-import { Tab, Tabs } from '@mui/material';
+import { Box, Tab, Tabs } from '@mui/material';
 import { useFormTabsPresenter } from './useFormTabsPresenter';
 
 export function FormTabs({ tabs }: Props) {
-  const { onChange, selectedChildren, selectedChildrenIndex } =
-    useFormTabsPresenter({
-      children: tabs.map((tab) => tab.children),
-    });
+  const { onChange, selectedChildrenIndex } = useFormTabsPresenter();
 
   return (
     <>
@@ -19,7 +16,15 @@ export function FormTabs({ tabs }: Props) {
           <Tab key={tab.label} label={tab.label} />
         ))}
       </Tabs>
-      {selectedChildren}
+
+      {tabs.map((tab, index) => (
+        <Box
+          key={tab.label}
+          display={index === selectedChildrenIndex ? '' : 'none'}
+        >
+          {tab.children}
+        </Box>
+      ))}
     </>
   );
 }

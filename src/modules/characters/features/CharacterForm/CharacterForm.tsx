@@ -12,8 +12,12 @@ export function CharacterForm(props: Props) {
     validationAttributes,
     attributesData,
     charData,
+    currentFormTab,
+    setCurrentFormTab,
     onSubmitCharSection,
     onSubmitAttrSection,
+    onCancelAttrSection,
+    onCancelCharSection,
   } = useCharacterFormPresenter(props);
 
   if (isFetching)
@@ -31,6 +35,8 @@ export function CharacterForm(props: Props) {
 
       <Paper sx={{ p: 2 }}>
         <FormTabs
+          tabIndex={currentFormTab}
+          onTabChange={setCurrentFormTab}
           tabs={[
             {
               label: 'Personagem',
@@ -39,6 +45,7 @@ export function CharacterForm(props: Props) {
                   validation={validationMain}
                   initialValues={charData}
                   onSubmit={onSubmitCharSection}
+                  onCancel={onCancelCharSection}
                 />
               ),
             },
@@ -49,6 +56,7 @@ export function CharacterForm(props: Props) {
                   validation={validationAttributes}
                   initialValues={attributesData}
                   onSubmit={onSubmitAttrSection}
+                  onCancel={onCancelAttrSection}
                   isSubmiting={isSubmiting}
                 />
               ),

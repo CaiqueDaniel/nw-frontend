@@ -6,6 +6,7 @@ import {
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { useCharacterFormPresenter } from '~/modules/characters/features/CharacterForm/useCharacterFormPresenter';
 import { LocalCharacterFactory } from '~/modules/characters/factories/LocalCharacterFactory';
+import { doubleNavigator } from '../fixtures/doubleNavigator';
 
 describe('useCharacterFormPresenter', () => {
   const options = { wrapper: Provider };
@@ -71,7 +72,18 @@ describe('useCharacterFormPresenter', () => {
 
       await waitFor(() => {
         expect(result.current.charData).toEqual(payload);
+        expect(result.current.currentFormTab).toBe(1);
       });
+    });
+
+    it('should be able to go back to previous page', async () => {
+      const { result } = renderHook(
+        () => useCharacterFormPresenter({}),
+        options
+      );
+
+      result.current.onCancelCharSection();
+      expect(doubleNavigator.navigateTo).toHaveBeenCalledWith('..');
     });
   });
 
@@ -125,6 +137,19 @@ describe('useCharacterFormPresenter', () => {
       await waitFor(() => {
         expect(result.current.attributesData).toEqual(payload);
       });
+    });
+
+    it('should be able to go back to previous tab', async () => {
+      const { result } = renderHook(
+        () => useCharacterFormPresenter({}),
+        options
+      );
+
+      act(() => result.current.onSubmitCharSection({} as any));
+      await waitFor(() => expect(result.current.currentFormTab).toBe(1));
+
+      act(() => result.current.onCancelAttrSection());
+      await waitFor(() => expect(result.current.currentFormTab).toBe(0));
     });
   });
 
@@ -257,6 +282,7 @@ describe('useCharacterFormPresenter', () => {
         value={{
           repository: doubleCharacterRepository,
           factory: new LocalCharacterFactory(),
+          navigator: doubleNavigator,
         }}
       >
         {children}

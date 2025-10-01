@@ -3,7 +3,6 @@ import { CharacterActionBarContext } from './features/CharacterActionBar/Charact
 import { useReactRouterRouteNavigator } from '../shared/infra/hooks/useReactRouterRouteNavigator';
 import { CharacterFormContext } from './features/CharacterForm/CharacterFormContext';
 import { LocalCharacterFactory } from './factories/LocalCharacterFactory';
-import { doubleCharacterRepository } from '../../../tests/fixtures/doubleCharacterRepository';
 
 export function CharactersProviders({ children }: PropsWithChildren) {
   return (
@@ -12,6 +11,7 @@ export function CharactersProviders({ children }: PropsWithChildren) {
     >
       <CharacterFormContext.Provider
         value={{
+          navigator: useReactRouterRouteNavigator(),
           factory: new LocalCharacterFactory(),
           repository: {} as any, // doubleCharacterRepository,
         }}

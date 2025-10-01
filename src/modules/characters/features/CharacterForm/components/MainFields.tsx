@@ -5,7 +5,12 @@ import { CharacterSectionFormData } from '../CharacterFormData';
 import { FormSubmitControls } from './FormSubmitControls';
 import { IntegerField } from '~/modules/shared/infra/components/IntegerField';
 
-export function MainFields({ initialValues, onSubmit, validation }: Props) {
+export function MainFields({
+  initialValues,
+  onSubmit,
+  onCancel,
+  validation,
+}: Props) {
   return (
     <Form<CharacterSectionFormData>
       initialValues={initialValues}
@@ -190,7 +195,7 @@ export function MainFields({ initialValues, onSubmit, validation }: Props) {
             </Grid2>
           </Grid2>
 
-          <FormSubmitControls submitBtnLabel="Próximo" />
+          <FormSubmitControls submitBtnLabel="Próximo" onCancel={onCancel} />
         </>
       )}
     </Form>
@@ -198,6 +203,7 @@ export function MainFields({ initialValues, onSubmit, validation }: Props) {
 }
 
 type Props = {
+  onCancel: () => void;
   onSubmit: (data: CharacterSectionFormData) => void;
   initialValues: CharacterSectionFormData;
   validation: any;

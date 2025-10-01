@@ -9,22 +9,27 @@ import {
 } from './CharacterFormData';
 
 export function useCharacterFormPresenter({ characterId }: Props) {
-  const { factory, repository } = useCharacterFormContext();
+  const { factory, repository, navigator } = useCharacterFormContext();
   const [isSubmiting, setIsSubmiting] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
   const [charData, setCharData] =
     useState<CharacterSectionFormData>(emptyCharValues);
   const [attributesData, setAttributesData] =
     useState<AttributesSectionFormData>(emptyAttributesValues);
+  const [currentFormTab, setCurrentFormTab] = useState(0);
 
   const onSubmitCharSection = (values: CharacterSectionFormData) => {
     setCharData(values);
+    setCurrentFormTab(1);
   };
 
   const onSubmitAttrSection = async (values: AttributesSectionFormData) => {
     setAttributesData(values);
     await onSubmit({ ...charData, Attributes: values });
   };
+
+  const onCancelCharSection = () => navigator.navigateTo('..');
+  const onCancelAttrSection = () => setCurrentFormTab(0);
 
   useEffect(() => {
     if (!characterId) return;
@@ -50,8 +55,12 @@ export function useCharacterFormPresenter({ characterId }: Props) {
     validationAttributes,
     attributesData,
     charData,
+    currentFormTab,
+    setCurrentFormTab,
     onSubmitCharSection,
     onSubmitAttrSection,
+    onCancelAttrSection,
+    onCancelCharSection,
     onSubmit,
   };
 

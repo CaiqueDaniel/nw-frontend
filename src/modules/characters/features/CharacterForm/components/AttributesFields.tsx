@@ -7,6 +7,7 @@ import { FormSubmitControls } from './FormSubmitControls';
 export function AttributesFields({
   initialValues,
   onSubmit,
+  onCancel,
   validation,
   isSubmiting,
 }: Props) {
@@ -143,7 +144,7 @@ export function AttributesFields({
               </Grid2>
             </Grid2>
           </Box>
-          <FormSubmitControls isSubmiting={isSubmiting} />
+          <FormSubmitControls isSubmiting={isSubmiting} onCancel={onCancel} />
         </>
       )}
     </Form>
@@ -151,6 +152,7 @@ export function AttributesFields({
 }
 
 type Props = {
+  onCancel: () => void;
   onSubmit: (data: AttribuitesFormData) => void;
   initialValues: AttribuitesFormData;
   validation: any;

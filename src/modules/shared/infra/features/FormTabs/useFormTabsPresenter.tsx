@@ -1,12 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export function useFormTabsPresenter() {
-  const [selectedChildrenIndex, setSelectedChildrenIndex] = useState(0);
+export function useFormTabsPresenter({ tabIndex = 0, onTabChange }: Props) {
+  const [selectedChildrenIndex, setSelectedChildrenIndex] = useState(tabIndex);
 
-  const onChange = (index: number) => setSelectedChildrenIndex(index);
+  const onChange = (index: number) => {
+    setSelectedChildrenIndex(index);
+    onTabChange?.(index);
+  };
+
+  useEffect(() => setSelectedChildrenIndex(tabIndex), [tabIndex]);
 
   return {
     selectedChildrenIndex,
     onChange,
   };
 }
+
+type Props = {
+  tabIndex?: number;
+  onTabChange?: (index: number) => void;
+};

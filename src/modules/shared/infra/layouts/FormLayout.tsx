@@ -6,7 +6,7 @@ export function FormLayout({ children }: PropsWithChildren) {
   return (
     <>
       <Navbar />
-      <Box px={16} pt={3} bgcolor="#ededed" height="100vh">
+      <Box px={16} pt={3} height="100vh">
         {children}
       </Box>
     </>

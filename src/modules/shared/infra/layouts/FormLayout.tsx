@@ -7,8 +7,8 @@ export function FormLayout({ children }: PropsWithChildren) {
     <>
       <Navbar />
       <Box
-        px={16}
-        pt={3}
+        //px={16}
+        //pt={3}
         height="100vh"
         sx={{
           backgroundImage: 'url("/map.png")',

@@ -1,4 +1,4 @@
-import { Grid2, TextField } from '@mui/material';
+import { Box, Grid2, TextField, Typography } from '@mui/material';
 import { Field } from 'formik';
 import { Form } from '~/modules/shared/infra/components/Form/Form';
 import { CharacterSectionFormData } from '../CharacterFormData';
@@ -135,18 +135,32 @@ export function MainFields({
             sx={{ mb: 3 }}
           />
 
-          <Field
-            as={TextField}
-            name="History"
-            label="História"
-            fullWidth
-            multiline
-            minRows={3}
-            maxRows={6}
-            helperText={errors.History}
-            error={Boolean(errors.History)}
-            sx={{ mb: 3 }}
-          />
+          <Box
+            sx={{ bgcolor: '#412e1b', pt: 0.5, px: 3, pb: 3, mb: 3 }}
+            className="bg-with-dark-tile"
+          >
+            <Typography
+              fontFamily="Trajan Pro"
+              color="#c5bdab"
+              textTransform="uppercase"
+              sx={{
+                '-webkit-text-stroke': '0.5px black',
+              }}
+            >
+              História Pregressa
+            </Typography>
+            <Field
+              as={TextField}
+              name="History"
+              placeholder="As aventuras que levam até aqui..."
+              fullWidth
+              multiline
+              minRows={3}
+              maxRows={6}
+              helperText={errors.History}
+              error={Boolean(errors.History)}
+            />
+          </Box>
 
           <Grid2 container spacing={2} mb={3}>
             <Grid2 size={3}>

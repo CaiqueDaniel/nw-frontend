@@ -1,5 +1,14 @@
+@font-face {
+  font-family: 'Trajan Pro';
+  src: url('./assets/fonts/trajanpro_bold.otf');
+}
+
 body {
   margin: 0;
   background-image: url('/background.png');
   background-attachment: fixed;
+}
+
+.bg-with-dark-tile {
+  background-image: url('/dark-bg-tile.png');
 }

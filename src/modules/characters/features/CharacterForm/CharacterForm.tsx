@@ -28,12 +28,31 @@ export function CharacterForm(props: Props) {
     );
 
   return (
-    <>
-      <Typography component="h1" mb={3}>
-        Personagem
-      </Typography>
+    <Box>
+      <Box display="flex" justifyContent="center">
+        <Typography
+          variant="h1"
+          bgcolor="#535a4e"
+          border="2px solid #7a6a54"
+          borderRadius="50px"
+          mb={3}
+          textAlign="center"
+          pt={1}
+          pb={0.5}
+          px={2}
+        >
+          Ficha de Personagem
+        </Typography>
+      </Box>
 
-      <Box sx={{ p: 2 }}>
+      <MainFields
+        validation={validationMain}
+        initialValues={charData}
+        onSubmit={onSubmitCharSection}
+        onCancel={onCancelCharSection}
+      />
+
+      {/* <Box sx={{ p: 2 }}>
         <FormTabs
           tabIndex={currentFormTab}
           onTabChange={setCurrentFormTab}
@@ -63,8 +82,8 @@ export function CharacterForm(props: Props) {
             },
           ]}
         />
-      </Box>
-    </>
+      </Box> */}
+    </Box>
   );
 }
 

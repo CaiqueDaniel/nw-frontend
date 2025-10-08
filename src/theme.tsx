@@ -1,6 +1,21 @@
 import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
+  typography: {
+    allVariants: {
+      fontFamily: 'Trajan Pro',
+      color: '#c5bdab',
+    },
+    h1: {
+      fontSize: '45px',
+      textShadow: '2px 2px 6px black',
+      '-webkit-text-stroke': '1px #4d3821',
+    },
+    h2: {
+      fontSize: '32px',
+      '-webkit-text-stroke': '0.6px #4d3821',
+    },
+  },
   components: {
     MuiInputLabel: {
       styleOverrides: {

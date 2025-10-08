@@ -18,66 +18,112 @@ export function MainFields({
       validationSchema={validation}
     >
       {({ errors }) => (
-        <>
-          <Grid2 container spacing={2} mb={3}>
-            <Grid2 size={6}>
-              <Field
-                as={TextField}
-                name="Name"
-                label="Nome"
-                required
-                fullWidth
-                helperText={errors.Name}
-                error={Boolean(errors.Name)}
-              />
-            </Grid2>
-            <Grid2 size={6}>
-              <Field
-                as={TextField}
-                name="Codename"
-                label="Apelido"
-                fullWidth
-                helperText={errors.Codename}
-                error={Boolean(errors.Codename)}
-              />
-            </Grid2>
-          </Grid2>
+        <Box>
+          <Box>
+            <Typography
+              className="bg-with-dark-tile"
+              variant="h2"
+              padding={1}
+              textTransform="uppercase"
+            >
+              Informações básicas
+            </Typography>
+            <Grid2 container spacing={2}>
+              <Grid2 container size={6}>
+                <Grid2 size={6}>
+                  <Field
+                    as={TextField}
+                    name="Name"
+                    label="Nome"
+                    required
+                    fullWidth
+                    helperText={errors.Name}
+                    error={Boolean(errors.Name)}
+                  />
+                </Grid2>
+                <Grid2 size={6}>
+                  <Field
+                    as={TextField}
+                    name="Codename"
+                    label="Apelido"
+                    fullWidth
+                    helperText={errors.Codename}
+                    error={Boolean(errors.Codename)}
+                  />
+                </Grid2>
 
-          <Grid2 container spacing={2} mb={3}>
-            <Grid2 size={4}>
-              <Field
-                as={TextField}
-                name="BreedId"
-                label="Raça"
-                required
-                fullWidth
-                helperText={errors.BreedId}
-                error={Boolean(errors.BreedId)}
-              />
+                <Grid2 container spacing={2} mb={3}>
+                  <Grid2 size={4}>
+                    <Field
+                      as={TextField}
+                      name="BreedId"
+                      label="Raça"
+                      required
+                      fullWidth
+                      helperText={errors.BreedId}
+                      error={Boolean(errors.BreedId)}
+                    />
+                  </Grid2>
+                  <Grid2 size={4}>
+                    <Field
+                      as={TextField}
+                      name="ClassId"
+                      label="Classe"
+                      required
+                      fullWidth
+                      helperText={errors.ClassId}
+                      error={Boolean(errors.ClassId)}
+                    />
+                  </Grid2>
+                  <Grid2 size={4}>
+                    <Field
+                      as={TextField}
+                      name="RankingId"
+                      label="Ranking"
+                      required
+                      fullWidth
+                      helperText={errors.RankingId}
+                      error={Boolean(errors.RankingId)}
+                    />
+                  </Grid2>
+                </Grid2>
+
+                <Box
+                  sx={{
+                    bgcolor: '#412e1b',
+                    pt: 0.5,
+                    px: 3,
+                    pb: 3,
+                    mb: 3,
+                    width: '100%',
+                  }}
+                  className="bg-with-dark-tile"
+                >
+                  <Typography
+                    textTransform="uppercase"
+                    sx={{
+                      '-webkit-text-stroke': '0.5px black',
+                    }}
+                  >
+                    História Pregressa
+                  </Typography>
+                  <Field
+                    as={TextField}
+                    name="History"
+                    placeholder="As aventuras que levam até aqui..."
+                    fullWidth
+                    multiline
+                    minRows={3}
+                    maxRows={6}
+                    helperText={errors.History}
+                    error={Boolean(errors.History)}
+                  />
+                </Box>
+              </Grid2>
+
+              <Grid2 container size={6}></Grid2>
             </Grid2>
-            <Grid2 size={4}>
-              <Field
-                as={TextField}
-                name="ClassId"
-                label="Classe"
-                required
-                fullWidth
-                helperText={errors.ClassId}
-                error={Boolean(errors.ClassId)}
-              />
-            </Grid2>
-            <Grid2 size={4}>
-              <Field
-                as={TextField}
-                name="RankingId"
-                label="Ranking"
-                required
-                fullWidth
-                helperText={errors.RankingId}
-                error={Boolean(errors.RankingId)}
-              />
-            </Grid2>
-          </Grid2>
+          </Box>
 
           <Grid2 container spacing={2} mb={3}>
             <Grid2 size={4}>
@@ -135,33 +181,6 @@ export function MainFields({
             sx={{ mb: 3 }}
           />
 
-          <Box
-            sx={{ bgcolor: '#412e1b', pt: 0.5, px: 3, pb: 3, mb: 3 }}
-            className="bg-with-dark-tile"
-          >
-            <Typography
-              fontFamily="Trajan Pro"
-              color="#c5bdab"
-              textTransform="uppercase"
-              sx={{
-                '-webkit-text-stroke': '0.5px black',
-              }}
-            >
-              História Pregressa
-            </Typography>
-            <Field
-              as={TextField}
-              name="History"
-              placeholder="As aventuras que levam até aqui..."
-              fullWidth
-              multiline
-              minRows={3}
-              maxRows={6}
-              helperText={errors.History}
-              error={Boolean(errors.History)}
-            />
-          </Box>
-
           <Grid2 container spacing={2} mb={3}>
             <Grid2 size={3}>
               <Field
@@ -210,7 +229,7 @@ export function MainFields({
           </Grid2>
 
           <FormSubmitControls submitBtnLabel="Próximo" onCancel={onCancel} />
-        </>
+        </Box>
       )}
     </Form>
   );

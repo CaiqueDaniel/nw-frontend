@@ -14,10 +14,14 @@ body {
   background-attachment: fixed;
 }
 
-.bg-with-dark-tile {
-  background-image: url('/dark-bg-tile.png');
+.bg-with-darker-tile {
+  background-image: url('/darker-bg-tile.png');
 }
 
-.bg-with-map-tile {
-  background-image: url('/map-bg-tile.png');
+.bg-with-light-tile {
+  background-image: url('/light-bg-tile.png');
+}
+
+.bg-with-dark-tile {
+  background-image: url('/dark-bg-tile.png');
 }

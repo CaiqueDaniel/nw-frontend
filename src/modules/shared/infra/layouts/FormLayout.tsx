@@ -11,7 +11,7 @@ export function FormLayout({ children }: PropsWithChildren) {
         pt={3}
         height="100vh"
       >
-        <Box className="bg-with-map-tile" px={12} pb={8}>{children}</Box>
+        <Box className="bg-with-light-tile" px={12} pb={8}>{children}</Box>
       </Box>
     </>
   );

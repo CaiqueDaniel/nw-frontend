@@ -20,13 +20,14 @@ export function MainFields({
       {({ errors }) => (
         <Box>
           <Box
+            mb={3}
             sx={{
               background:
                 'linear-gradient(90deg, #7a6a54a0 0%, transparent 5%, transparent 95%, #7a6a54a0 100%);',
             }}
           >
             <Typography
-              className="bg-with-dark-tile"
+              className="bg-with-darker-tile"
               variant="h2"
               lineHeight="35px"
               px={3}
@@ -105,7 +106,7 @@ export function MainFields({
                     pb: 3,
                     width: '100%',
                   }}
-                  className="bg-with-dark-tile"
+                  className="bg-with-darker-tile"
                 >
                   <Typography
                     textTransform="uppercase"
@@ -211,28 +212,49 @@ export function MainFields({
             </Grid2>
           </Box>
 
-          <Field
-            as={TextField}
-            name="Personality"
-            label="Personalidade"
-            fullWidth
-            helperText={errors.Personality}
-            error={Boolean(errors.Personality)}
-            sx={{ mb: 3 }}
-          />
+          <Box>
+            <Grid2 container spacing={2}>
+              <Grid2 size={6}></Grid2>
 
-          <Field
-            as={TextField}
-            name="Appearance"
-            label="Aparência"
-            fullWidth
-            multiline
-            minRows={3}
-            maxRows={6}
-            helperText={errors.Appearance}
-            error={Boolean(errors.Appearance)}
-            sx={{ mb: 3 }}
-          />
+              <Grid2 size={6} className="bg-with-dark-tile">
+                <Typography
+                  className="bg-with-darker-tile"
+                  variant="h2"
+                  lineHeight="35px"
+                  px={3}
+                  textTransform="uppercase"
+                  mb={3}
+                >
+                  Aparência
+                </Typography>
+
+                <Box px={3}>
+                  <Field
+                    as={TextField}
+                    name="Appearance"
+                    label="Aparência"
+                    fullWidth
+                    multiline
+                    minRows={3}
+                    maxRows={6}
+                    helperText={errors.Appearance}
+                    error={Boolean(errors.Appearance)}
+                    sx={{ mb: 3 }}
+                  />
+
+                  <Field
+                    as={TextField}
+                    name="Personality"
+                    label="Personalidade"
+                    fullWidth
+                    helperText={errors.Personality}
+                    error={Boolean(errors.Personality)}
+                    sx={{ mb: 3 }}
+                  />
+                </Box>
+              </Grid2>
+            </Grid2>
+          </Box>
 
           <Grid2 container spacing={2} mb={3}></Grid2>
 

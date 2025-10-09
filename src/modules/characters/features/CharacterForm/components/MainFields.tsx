@@ -19,18 +19,26 @@ export function MainFields({
     >
       {({ errors }) => (
         <Box>
-          <Box>
+          <Box
+            sx={{
+              background:
+                'linear-gradient(90deg, #7a6a54a0 0%, transparent 5%, transparent 95%, #7a6a54a0 100%);',
+            }}
+          >
             <Typography
               className="bg-with-dark-tile"
               variant="h2"
-              padding={1}
+              lineHeight="35px"
+              px={3}
               textTransform="uppercase"
+              mb={3}
             >
               Informações básicas
             </Typography>
+
             <Grid2 container spacing={2}>
               <Grid2 container size={6}>
-                <Grid2 size={6}>
+                <Grid2 size={6} pl={3}>
                   <Field
                     as={TextField}
                     name="Name"
@@ -41,6 +49,7 @@ export function MainFields({
                     error={Boolean(errors.Name)}
                   />
                 </Grid2>
+
                 <Grid2 size={6}>
                   <Field
                     as={TextField}
@@ -52,7 +61,7 @@ export function MainFields({
                   />
                 </Grid2>
 
-                <Grid2 container spacing={2} mb={3}>
+                <Grid2 container spacing={2} mb={2} pl={3}>
                   <Grid2 size={4}>
                     <Field
                       as={TextField}
@@ -94,7 +103,6 @@ export function MainFields({
                     pt: 0.5,
                     px: 3,
                     pb: 3,
-                    mb: 3,
                     width: '100%',
                   }}
                   className="bg-with-dark-tile"
@@ -121,42 +129,87 @@ export function MainFields({
                 </Box>
               </Grid2>
 
-              <Grid2 container size={6}></Grid2>
+              <Grid2 container size={6} pr={3}>
+                <Grid2 size={6}>
+                  <Field
+                    sx={{ mb: 1 }}
+                    as={IntegerField}
+                    name="Age"
+                    label="Idade"
+                    fullWidth
+                    helperText={errors.Age}
+                    error={Boolean(errors.Age)}
+                  />
+
+                  <Field
+                    sx={{ mb: 1 }}
+                    as={TextField}
+                    name="Weight"
+                    label="Peso"
+                    fullWidth
+                    helperText={errors.Weight}
+                    error={Boolean(errors.Weight)}
+                  />
+
+                  <Field
+                    sx={{ mb: 1 }}
+                    as={TextField}
+                    name="Height"
+                    label="Altura"
+                    fullWidth
+                    helperText={errors.Height}
+                    error={Boolean(errors.Height)}
+                  />
+
+                  <Field
+                    sx={{ mb: 1 }}
+                    as={IntegerField}
+                    name="Level"
+                    label="Nível"
+                    required
+                    fullWidth
+                    helperText={errors.Level}
+                    error={Boolean(errors.Level)}
+                  />
+                </Grid2>
+
+                <Grid2 size={6}>
+                  <Field
+                    sx={{ mb: 1 }}
+                    as={IntegerField}
+                    name="Experience"
+                    label="Experiência"
+                    fullWidth
+                    required
+                    helperText={errors.Experience}
+                    error={Boolean(errors.Experience)}
+                  />
+
+                  <Field
+                    sx={{ mb: 1 }}
+                    as={IntegerField}
+                    name="Sanity"
+                    label="Sanidade"
+                    fullWidth
+                    required
+                    helperText={errors.Sanity}
+                    error={Boolean(errors.Sanity)}
+                  />
+
+                  <Field
+                    sx={{ mb: 1 }}
+                    as={TextField}
+                    name="Money"
+                    label="Dinheiro"
+                    fullWidth
+                    required
+                    helperText={errors.Money}
+                    error={Boolean(errors.Money)}
+                  />
+                </Grid2>
+              </Grid2>
             </Grid2>
           </Box>
-
-          <Grid2 container spacing={2} mb={3}>
-            <Grid2 size={4}>
-              <Field
-                as={IntegerField}
-                name="Age"
-                label="Idade"
-                fullWidth
-                helperText={errors.Age}
-                error={Boolean(errors.Age)}
-              />
-            </Grid2>
-            <Grid2 size={4}>
-              <Field
-                as={TextField}
-                name="Weight"
-                label="Peso"
-                fullWidth
-                helperText={errors.Weight}
-                error={Boolean(errors.Weight)}
-              />
-            </Grid2>
-            <Grid2 size={4}>
-              <Field
-                as={TextField}
-                name="Height"
-                label="Altura"
-                fullWidth
-                helperText={errors.Height}
-                error={Boolean(errors.Height)}
-              />
-            </Grid2>
-          </Grid2>
 
           <Field
             as={TextField}
@@ -181,52 +234,7 @@ export function MainFields({
             sx={{ mb: 3 }}
           />
 
-          <Grid2 container spacing={2} mb={3}>
-            <Grid2 size={3}>
-              <Field
-                as={IntegerField}
-                name="Level"
-                label="Nível"
-                required
-                fullWidth
-                helperText={errors.Level}
-                error={Boolean(errors.Level)}
-              />
-            </Grid2>
-            <Grid2 size={3}>
-              <Field
-                as={IntegerField}
-                name="Experience"
-                label="Experiência"
-                fullWidth
-                required
-                helperText={errors.Experience}
-                error={Boolean(errors.Experience)}
-              />
-            </Grid2>
-            <Grid2 size={3}>
-              <Field
-                as={IntegerField}
-                name="Sanity"
-                label="Sanidade"
-                fullWidth
-                required
-                helperText={errors.Sanity}
-                error={Boolean(errors.Sanity)}
-              />
-            </Grid2>
-            <Grid2 size={3}>
-              <Field
-                as={TextField}
-                name="Money"
-                label="Dinheiro"
-                fullWidth
-                required
-                helperText={errors.Money}
-                error={Boolean(errors.Money)}
-              />
-            </Grid2>
-          </Grid2>
+          <Grid2 container spacing={2} mb={3}></Grid2>
 
           <FormSubmitControls submitBtnLabel="Próximo" onCancel={onCancel} />
         </Box>

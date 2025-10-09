@@ -29,14 +29,19 @@ export function CharacterForm(props: Props) {
 
   return (
     <Box>
-      <Box display="flex" justifyContent="center">
+      <Box
+        display="flex"
+        justifyContent="center"
+        position="relative"
+        top="-35px"
+      >
         <Typography
           variant="h1"
           bgcolor="#535a4e"
           border="2px solid #7a6a54"
           borderRadius="50px"
-          mb={3}
           textAlign="center"
+          textTransform="uppercase"
           pt={1}
           pb={0.5}
           px={2}

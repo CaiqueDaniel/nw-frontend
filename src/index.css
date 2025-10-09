@@ -3,6 +3,11 @@
   src: url('./assets/fonts/trajanpro_bold.otf');
 }
 
+@font-face {
+  font-family: 'Jenson Old Becker';
+  src: url('./assets/fonts/jenson-old-becker-bold-cond-regular.ttf');
+}
+
 body {
   margin: 0;
   background-image: url('/background.png');
@@ -11,4 +16,8 @@ body {
 
 .bg-with-dark-tile {
   background-image: url('/dark-bg-tile.png');
+}
+
+.bg-with-map-tile {
+  background-image: url('/map-bg-tile.png');
 }

@@ -4,6 +4,16 @@ import { Form } from '~/modules/shared/infra/components/Form/Form';
 import { CharacterSectionFormData } from '../CharacterFormData';
 import { FormSubmitControls } from './FormSubmitControls';
 import { IntegerField } from '~/modules/shared/infra/components/IntegerField';
+import { AttributesPointsField } from './AttributesPointsField';
+import strengthImg from '~/assets/images/strength.png';
+import speedImg from '~/assets/images/speed.png';
+import controlImg from '~/assets/images/control.png';
+import conjuringImg from '~/assets/images/conjuring.png';
+import dexterityImg from '~/assets/images/dexterity.png';
+import powImg from '~/assets/images/pow.png';
+import psycheImg from '~/assets/images/psyche.png';
+import vitalityImg from '~/assets/images/vitality.png';
+import magResistance from '~/assets/images/magical-resistance.png';
 
 export function MainFields({
   initialValues,
@@ -214,7 +224,208 @@ export function MainFields({
 
           <Box>
             <Grid2 container spacing={2}>
-              <Grid2 size={6}></Grid2>
+              <Grid2 size={6}>
+                <Box className="bg-with-dark-tile">
+                  <Typography
+                    className="bg-with-darker-tile"
+                    variant="h2"
+                    lineHeight="35px"
+                    textTransform="uppercase"
+                    mb={3}
+                    px={2}
+                  >
+                    Atributos
+                  </Typography>
+
+                  <Grid2 container spacing={1}>
+                    <Grid2 size={6} className="bg-with-darker-tile" p={2}>
+                      <Field
+                        as={AttributesPointsField}
+                        adornament={
+                          <img
+                            src={strengthImg}
+                            width="28px"
+                            height="28px"
+                            style={{ borderRadius: '4px' }}
+                          />
+                        }
+                        name="Strength"
+                        label="Força"
+                        fullWidth
+                        helperText={errors.Strength}
+                        error={Boolean(errors.Strength)}
+                        sx={{ mb: 2 }}
+                      />
+
+                      <Field
+                        as={AttributesPointsField}
+                        adornament={
+                          <img
+                            src={speedImg}
+                            width="28px"
+                            height="28px"
+                            style={{ borderRadius: '4px' }}
+                          />
+                        }
+                        name="Speed"
+                        label="Velocidade"
+                        fullWidth
+                        helperText={errors.Speed}
+                        error={Boolean(errors.Speed)}
+                        sx={{ mb: 2 }}
+                      />
+
+                      <Field
+                        as={AttributesPointsField}
+                        adornament={
+                          <img
+                            src={dexterityImg}
+                            width="28px"
+                            height="28px"
+                            style={{ borderRadius: '4px' }}
+                          />
+                        }
+                        name="Dexterity"
+                        label="Destreza"
+                        fullWidth
+                        helperText={errors.Dexterity}
+                        error={Boolean(errors.Dexterity)}
+                        sx={{ mb: 2 }}
+                      />
+
+                      <Field
+                        as={AttributesPointsField}
+                        adornament={
+                          <img
+                            src={vitalityImg}
+                            width="28px"
+                            height="28px"
+                            style={{ borderRadius: '4px' }}
+                          />
+                        }
+                        name="Vitality"
+                        label="Vitalidade"
+                        fullWidth
+                        helperText={errors.Vitality}
+                        error={Boolean(errors.Vitality)}
+                        sx={{ mb: 2 }}
+                      />
+
+                      <Field
+                        as={AttributesPointsField}
+                        adornament={
+                          <img
+                            src={powImg}
+                            width="28px"
+                            height="28px"
+                            style={{ borderRadius: '4px' }}
+                          />
+                        }
+                        name="Potency"
+                        label="Potência"
+                        fullWidth
+                        helperText={errors.Potency}
+                        error={Boolean(errors.Potency)}
+                        sx={{ mb: 2 }}
+                      />
+
+                      <Field
+                        as={AttributesPointsField}
+                        adornament={
+                          <img
+                            src={conjuringImg}
+                            width="28px"
+                            height="28px"
+                            style={{ borderRadius: '4px' }}
+                          />
+                        }
+                        name="Conjuration"
+                        label="Conjuração"
+                        fullWidth
+                        helperText={errors.Conjuration}
+                        error={Boolean(errors.Conjuration)}
+                        sx={{ mb: 2 }}
+                      />
+                    </Grid2>
+
+                    <Grid2 size={6} className="bg-with-darker-tile" p={2}>
+                      <Field
+                        as={AttributesPointsField}
+                        adornament={
+                          <img
+                            src={controlImg}
+                            width="28px"
+                            height="28px"
+                            style={{ borderRadius: '4px' }}
+                          />
+                        }
+                        name="Control"
+                        label="Controle"
+                        fullWidth
+                        helperText={errors.Control}
+                        error={Boolean(errors.Control)}
+                        sx={{ mb: 2 }}
+                      />
+
+                      <Field
+                        as={AttributesPointsField}
+                        adornament={
+                          <img
+                            src={magResistance}
+                            width="28px"
+                            height="28px"
+                            style={{ borderRadius: '4px' }}
+                          />
+                        }
+                        name="MagicResistance"
+                        label="Resistência Mágica"
+                        fullWidth
+                        helperText={errors.MagicResistance}
+                        error={Boolean(errors.MagicResistance)}
+                        sx={{ mb: 2 }}
+                      />
+
+                      <Field
+                        as={AttributesPointsField}
+                        adornament={
+                          <img
+                            src={psycheImg}
+                            width="28px"
+                            height="28px"
+                            style={{ borderRadius: '4px' }}
+                          />
+                        }
+                        name="Psyche"
+                        label="Psique"
+                        fullWidth
+                        helperText={errors.Psyche}
+                        error={Boolean(errors.Psyche)}
+                        sx={{ mb: 2 }}
+                      />
+
+                      <Field
+                        as={AttributesPointsField}
+                        name="ResourceType"
+                        label="Tipo de Recurso"
+                        fullWidth
+                        helperText={errors.ResourceType}
+                        error={Boolean(errors.ResourceType)}
+                        sx={{ mb: 2 }}
+                      />
+
+                      <Field
+                        as={AttributesPointsField}
+                        name="ResourceId"
+                        label="ID do Recurso"
+                        fullWidth
+                        helperText={errors.ResourceId}
+                        error={Boolean(errors.ResourceId)}
+                        sx={{ mb: 2 }}
+                      />
+                    </Grid2>
+                  </Grid2>
+                </Box>
+              </Grid2>
 
               <Grid2 size={6} className="bg-with-dark-tile">
                 <Typography

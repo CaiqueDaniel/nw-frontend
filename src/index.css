@@ -23,5 +23,7 @@ body {
 }
 
 .bg-with-dark-tile {
-  background-image: url('/dark-bg-tile.png');
+  background-image: url('/darker-bg-tile.png');
+  background-color: #7b5e3a;
+  background-blend-mode: overlay;
 }

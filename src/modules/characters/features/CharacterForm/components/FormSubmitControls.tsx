@@ -1,4 +1,5 @@
 import { Box, Button } from '@mui/material';
+import primaryBtnTile from '~/assets/images/primary-btn-tile.png';
 
 export function FormSubmitControls({
   isSubmiting,
@@ -10,6 +11,7 @@ export function FormSubmitControls({
       <Button color="error" variant="contained" onClick={onCancel}>
         Cancelar
       </Button>
+
       <Button
         type="submit"
         color="primary"

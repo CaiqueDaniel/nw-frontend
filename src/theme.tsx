@@ -1,4 +1,6 @@
 import { createTheme } from '@mui/material';
+import primaryBtnTile from '~/assets/images/primary-btn-tile.png';
+import dangerBtnTile from '~/assets/images/danger-btn-tile.png';
 
 export const theme = createTheme({
   typography: {
@@ -37,6 +39,22 @@ export const theme = createTheme({
         },
         input: {
           padding: '6px !important',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontFamily: 'Jenson Old Becker',
+          color: '#c5bdab',
+          fontSize: '30px',
+          '-webkit-text-stroke': '1.2px #544229',
+        },
+        containedPrimary: {
+          backgroundImage: `url("${primaryBtnTile}")`,
+        },
+        containedError: {
+          backgroundImage: `url("${dangerBtnTile}")`,
         },
       },
     },

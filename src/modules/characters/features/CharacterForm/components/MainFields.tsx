@@ -469,7 +469,7 @@ export function MainFields({
 
           <Grid2 container spacing={2} mb={3}></Grid2>
 
-          <FormSubmitControls submitBtnLabel="Próximo" onCancel={onCancel} />
+          <FormSubmitControls submitBtnLabel="Enviar" onCancel={onCancel} />
         </Box>
       )}
     </Form>
@@ -481,4 +481,5 @@ type Props = {
   onSubmit: (data: CharacterSectionFormData) => void;
   initialValues: CharacterSectionFormData;
   validation: any;
+  isSubmiting: boolean;
 };

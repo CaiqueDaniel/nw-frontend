@@ -22,7 +22,7 @@ describe('useCharacterFormPresenter', () => {
         options
       );
 
-      expect(result.current.validationMain).toBeTruthy();
+      expect(result.current.validation).toBeTruthy();
       expect(result.current.charData).toEqual({
         BreedId: '',
         ClassId: '',
@@ -39,11 +39,37 @@ describe('useCharacterFormPresenter', () => {
         Level: '',
         Experience: '',
         Sanity: '',
+        Strength: '',
+        Speed: '',
+        Dexterity: '',
+        Vitality: '',
+        Potency: '',
+        Conjuration: '',
+        Control: '',
+        MagicResistance: '',
+        Psyche: '',
+        ResourceType: '',
+        ResourceId: '',
       });
     });
 
     it('should be able to submit', async () => {
-      const payload = {
+      const attrPayload = {
+        Sanity: '1',
+        Strength: '1',
+        Speed: '1',
+        Dexterity: '1',
+        Vitality: '1',
+        Potency: '1',
+        Conjuration: '1',
+        Control: '1',
+        MagicResistance: '1',
+        Psyche: '1',
+        ResourceType: '1',
+        ResourceId: '789',
+      };
+
+      const charPayload = {
         BreedId: '123',
         ClassId: '234',
         RankingId: '456',
@@ -58,7 +84,11 @@ describe('useCharacterFormPresenter', () => {
         Money: 'Money',
         Level: 'Level',
         Experience: 'Experience',
-        Sanity: 'Sanity',
+      };
+
+      const payload = {
+        ...charPayload,
+        ...attrPayload,
       };
 
       const { result } = renderHook(
@@ -66,13 +96,13 @@ describe('useCharacterFormPresenter', () => {
         options
       );
 
-      act(() => {
-        result.current.onSubmitCharSection(payload);
+      await act(async () => {
+        await result.current.onSubmit(payload);
       });
 
       await waitFor(() => {
         expect(result.current.charData).toEqual(payload);
-        expect(result.current.currentFormTab).toBe(1);
+        expect(doubleCharacterRepository.save).toHaveBeenCalled();
       });
     });
 
@@ -82,74 +112,8 @@ describe('useCharacterFormPresenter', () => {
         options
       );
 
-      result.current.onCancelCharSection();
+      result.current.onCancel();
       expect(doubleNavigator.navigateTo).toHaveBeenCalledWith('..');
-    });
-  });
-
-  describe('AttributesFields form', () => {
-    it('should be able to render', () => {
-      const { result } = renderHook(
-        () => useCharacterFormPresenter({}),
-        options
-      );
-
-      expect(result.current.attributesData).toEqual({
-        Strength: '',
-        Speed: '',
-        Dexterity: '',
-        Vitality: '',
-        Potency: '',
-        Conjuration: '',
-        Control: '',
-        MagicResistance: '',
-        Psyche: '',
-        ResourceType: '',
-        ResourceId: '',
-      });
-      expect(result.current.validationAttributes).toBeTruthy();
-    });
-
-    it('should be able to submit', async () => {
-      const payload = {
-        Strength: 'Strength',
-        Speed: 'Speed',
-        Dexterity: 'Dexterity',
-        Vitality: 'Vitality',
-        Potency: 'Potency',
-        Conjuration: 'Conjuration',
-        Control: 'Control',
-        MagicResistance: 'MagicResistance',
-        Psyche: 'Psyche',
-        ResourceType: 'ResourceType',
-        ResourceId: '789',
-      };
-
-      const { result } = renderHook(
-        () => useCharacterFormPresenter({}),
-        options
-      );
-
-      act(() => {
-        result.current.onSubmitAttrSection(payload);
-      });
-
-      await waitFor(() => {
-        expect(result.current.attributesData).toEqual(payload);
-      });
-    });
-
-    it('should be able to go back to previous tab', async () => {
-      const { result } = renderHook(
-        () => useCharacterFormPresenter({}),
-        options
-      );
-
-      act(() => result.current.onSubmitCharSection({} as any));
-      await waitFor(() => expect(result.current.currentFormTab).toBe(1));
-
-      act(() => result.current.onCancelAttrSection());
-      await waitFor(() => expect(result.current.currentFormTab).toBe(0));
     });
   });
 
@@ -172,9 +136,6 @@ describe('useCharacterFormPresenter', () => {
       Level: String(mockedCharacter.Level),
       Experience: String(mockedCharacter.Experience),
       Sanity: String(mockedCharacter.Sanity),
-    };
-
-    const attrData = {
       Strength: String(mockedCharacter.Attributes.Strength),
       Speed: String(mockedCharacter.Attributes.Speed),
       Dexterity: String(mockedCharacter.Attributes.Dexterity),
@@ -197,7 +158,6 @@ describe('useCharacterFormPresenter', () => {
 
     await waitFor(() => {
       expect(result.current.charData).toEqual(charData);
-      expect(result.current.attributesData).toEqual(attrData);
       expect(result.current.isFetching).toBe(false);
       expect(result.current.isSubmiting).toBe(false);
     });
@@ -225,19 +185,17 @@ describe('useCharacterFormPresenter', () => {
         Level: 'Level',
         Experience: 'Experience',
         Sanity: 'Sanity',
-        Attributes: {
-          Strength: 'Strength',
-          Speed: 'Speed',
-          Dexterity: 'Dexterity',
-          Vitality: 'Vitality',
-          Potency: 'Potency',
-          Conjuration: 'Conjuration',
-          Control: 'Control',
-          MagicResistance: 'MagicResistance',
-          Psyche: 'Psyche',
-          ResourceType: 'ResourceType',
-          ResourceId: '789',
-        },
+        Strength: 'Strength',
+        Speed: 'Speed',
+        Dexterity: 'Dexterity',
+        Vitality: 'Vitality',
+        Potency: 'Potency',
+        Conjuration: 'Conjuration',
+        Control: 'Control',
+        MagicResistance: 'MagicResistance',
+        Psyche: 'Psyche',
+        ResourceType: 'ResourceType',
+        ResourceId: '789',
       });
     });
 

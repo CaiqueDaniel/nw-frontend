@@ -1,5 +1,4 @@
 import { Box, Button } from '@mui/material';
-import primaryBtnTile from '~/assets/images/primary-btn-tile.png';
 
 export function FormSubmitControls({
   isSubmiting,

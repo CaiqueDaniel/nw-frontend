@@ -1,4 +1,4 @@
-export type CharacterSectionFormData = {
+export type CharacterSectionFormData = AttributesSectionFormData & {
   BreedId: string;
   ClassId: string;
   RankingId: string;

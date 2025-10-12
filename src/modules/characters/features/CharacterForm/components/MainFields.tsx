@@ -14,6 +14,7 @@ import powImg from '~/assets/images/pow.png';
 import psycheImg from '~/assets/images/psyche.png';
 import vitalityImg from '~/assets/images/vitality.png';
 import magResistance from '~/assets/images/magical-resistance.png';
+import { FloatField } from '~/modules/shared/infra/components/FloatField';
 
 export function MainFields({
   initialValues,
@@ -154,7 +155,7 @@ export function MainFields({
 
                   <Field
                     sx={{ mb: 1 }}
-                    as={TextField}
+                    as={FloatField}
                     name="Weight"
                     label="Peso"
                     fullWidth
@@ -164,7 +165,7 @@ export function MainFields({
 
                   <Field
                     sx={{ mb: 1 }}
-                    as={TextField}
+                    as={FloatField}
                     name="Height"
                     label="Altura"
                     fullWidth
@@ -209,7 +210,7 @@ export function MainFields({
 
                   <Field
                     sx={{ mb: 1 }}
-                    as={TextField}
+                    as={FloatField}
                     name="Money"
                     label="Dinheiro"
                     fullWidth
@@ -222,7 +223,7 @@ export function MainFields({
             </Grid2>
           </Box>
 
-          <Box>
+          <Box mb={3}>
             <Grid2 container spacing={2}>
               <Grid2 size={6}>
                 <Box className="bg-with-dark-tile">
@@ -466,8 +467,6 @@ export function MainFields({
               </Grid2>
             </Grid2>
           </Box>
-
-          <Grid2 container spacing={2} mb={3}></Grid2>
 
           <FormSubmitControls submitBtnLabel="Enviar" onCancel={onCancel} />
         </Box>

@@ -155,12 +155,25 @@ const validation = object({
     .max(255, 'Máximo de 255 caracteres'),
   Codename: string().max(255, 'Máximo de 255 caracteres'),
   Age: number().min(1, 'Valor mínimo de 1').integer('Apenas números inteiros'),
-  Weight: number().min(0.01, 'Valor mínimo de 0.01'),
-  Height: number().min(0.01, 'Valor mínimo de 0.01'),
+  Weight: number()
+    .transform((_, value) =>
+      Number(value?.replace(/\./gim, '').replace(',', '.'))
+    )
+    .min(0.01, 'Valor mínimo de 0.01'),
+  Height: number()
+    .transform((_, value) =>
+      Number(value?.replace(/\./gim, '').replace(',', '.'))
+    )
+    .min(0.01, 'Valor mínimo de 0.01'),
   Personality: string().max(255, 'Máximo de 255 caracteres'),
   Appearance: string().max(25000, 'Máximo de 25000 caracteres'),
   History: string().max(25000, 'Máximo de 25000 caracteres'),
-  Money: number().required('Campo obrigatório'),
+  Money: number()
+    .transform((_, value) =>
+      Number(value?.replace(/\./gim, '').replace(',', '.'))
+    )
+    .min(0.01, 'Valor mínimo de 0.01')
+    .required('Campo obrigatório'),
   Level: number()
     .required('Campo obrigatório')
     .min(1, 'Valor mínimo de 1')
@@ -174,15 +187,19 @@ const validation = object({
     .min(1, 'Valor mínimo de 1')
     .integer('Apenas números inteiros'),
 
-  Strength: string().required('Campo obrigatório'),
-  Speed: string().required('Campo obrigatório'),
-  Dexterity: string().required('Campo obrigatório'),
-  Vitality: string().required('Campo obrigatório'),
-  Potency: string().required('Campo obrigatório'),
-  Conjuration: string().required('Campo obrigatório'),
-  Control: string().required('Campo obrigatório'),
-  MagicResistance: string().required('Campo obrigatório'),
-  Psyche: string().required('Campo obrigatório'),
+  Strength: number().min(1, 'Valor mínimo de 1').required('Campo obrigatório'),
+  Speed: number().min(1, 'Valor mínimo de 1').required('Campo obrigatório'),
+  Dexterity: number().min(1, 'Valor mínimo de 1').required('Campo obrigatório'),
+  Vitality: number().min(1, 'Valor mínimo de 1').required('Campo obrigatório'),
+  Potency: number().min(1, 'Valor mínimo de 1').required('Campo obrigatório'),
+  Conjuration: number()
+    .min(1, 'Valor mínimo de 1')
+    .required('Campo obrigatório'),
+  Control: number().min(1, 'Valor mínimo de 1').required('Campo obrigatório'),
+  MagicResistance: number()
+    .min(1, 'Valor mínimo de 1')
+    .required('Campo obrigatório'),
+  Psyche: number().min(1, 'Valor mínimo de 1').required('Campo obrigatório'),
   ResourceType: string().required('Campo obrigatório'),
   ResourceId: string().required('Campo obrigatório'),
 });

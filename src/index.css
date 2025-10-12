@@ -3,12 +3,27 @@
   src: url('./assets/fonts/trajanpro_bold.otf');
 }
 
+@font-face {
+  font-family: 'Jenson Old Becker';
+  src: url('./assets/fonts/jenson-old-becker-bold-cond-regular.ttf');
+}
+
 body {
   margin: 0;
   background-image: url('/background.png');
   background-attachment: fixed;
 }
 
+.bg-with-darker-tile {
+  background-image: url('/darker-bg-tile.png');
+}
+
+.bg-with-light-tile {
+  background-image: url('/light-bg-tile.png');
+}
+
 .bg-with-dark-tile {
-  background-image: url('/dark-bg-tile.png');
+  background-image: url('/darker-bg-tile.png');
+  background-color: #7b5e3a;
+  background-blend-mode: overlay;
 }

@@ -7,16 +7,11 @@ export function FormLayout({ children }: PropsWithChildren) {
     <>
       <Navbar />
       <Box
-        //px={16}
-        //pt={3}
+        px={8}
+        pt={3}
         height="100vh"
-        sx={{
-          backgroundImage: 'url("/map.png")',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-        }}
       >
-        {children}
+        <Box className="bg-with-light-tile" px={12} pb={8}>{children}</Box>
       </Box>
     </>
   );

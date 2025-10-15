@@ -12,4 +12,4 @@ services:
       - .:/app
     environment:
       VITE_ENV: "${VITE_ENV:-development}"
-      VITE_BASE_API_URL: "${VITE_BASE_API_URL:-http://localhost:8080}"
+      VITE_BASE_API_URL: "${VITE_BASE_API_URL:-http://localhost:5000/api}"

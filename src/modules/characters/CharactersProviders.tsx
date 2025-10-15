@@ -3,6 +3,7 @@ import { CharacterActionBarContext } from './features/CharacterActionBar/Charact
 import { useReactRouterRouteNavigator } from '../shared/infra/hooks/useReactRouterRouteNavigator';
 import { CharacterFormContext } from './features/CharacterForm/CharacterFormContext';
 import { LocalCharacterFactory } from './factories/LocalCharacterFactory';
+import { useRTKTraitsGateway } from './gateways/useRTKTraitsGateway';
 
 export function CharactersProviders({ children }: PropsWithChildren) {
   return (
@@ -14,6 +15,7 @@ export function CharactersProviders({ children }: PropsWithChildren) {
           navigator: useReactRouterRouteNavigator(),
           factory: new LocalCharacterFactory(),
           repository: {} as any, // doubleCharacterRepository,
+          traitsService: useRTKTraitsGateway(),
         }}
       >
         {children}

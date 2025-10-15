@@ -1,4 +1,4 @@
-import { apiSlice } from '~/config/rtkquery/apiSlice';
+import { apiSlice, BREEDS_API_SLICE, CLASSES_API_SLICE, RANKINGS_API_SLICE } from '~/config/rtkquery/apiSlice';
 import { TraitData, TraitsService } from '../services/TraitsService';
 
 export function useRTKTraitsGateway(): TraitsService {
@@ -17,10 +17,6 @@ export function useRTKTraitsGateway(): TraitsService {
     getRankings: () => rtkGetRankings().unwrap(),
   };
 }
-
-export const CLASSES_API_SLICE = 'traits_classes';
-export const BREEDS_API_SLICE = 'traits_races';
-export const RANKINGS_API_SLICE = 'traits_rankings';
 
 const traitsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => {

@@ -1,0 +1,48 @@
+name: CI Vite Build and Test # Nome do workflow
+
+on:
+  push:
+    branches: [ "main", "master" ] # Aciona o workflow em push para as branches main/master
+  pull_request:
+    branches: [ "main", "master" ] # Aciona o workflow em pull requests para as branches main/master
+  
+  # Permite que você execute este workflow manualmente na aba "Actions"
+  #workflow_dispatch:
+
+jobs:
+  build_and_test:
+    # Define o runner (máquina virtual onde o job será executado)
+    runs-on: ubuntu-latest
+
+    strategy:
+      # Define a matriz de testes se precisar testar em múltiplas versões do Node.js
+      matrix:
+        node-version: [20.x] # Use as versões LTS que seu projeto suporta
+
+    steps:
+    - name: Checkout Code # Passo 1: Clona o repositório
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js ${{ matrix.node-version }} # Passo 2: Configura o ambiente Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm' # Habilita o cache para node_modules para builds mais rápidos
+        
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Tests (Vitest, Jest, etc.)
+      run: npm run test
+
+    #- name: Build Project (Vite) # Passo 6: Cria o build de produção com Vite
+      # Altere 'npm run build' pelo seu comando de build, se for diferente
+      #run: npm run build
+      
+    #- name: Upload Build Artifact (Opcional) # Passo 7 (Opcional): Armazena o artefato de build
+      # Útil se você precisar do resultado do build para um job de Deploy posterior
+      #uses: actions/upload-artifact@v4
+      #with:
+        #name: dist-build-${{ github.sha }}
+        #path: dist # Altere 'dist' se o diretório de saída do Vite for diferente
+        #retention-days: 5

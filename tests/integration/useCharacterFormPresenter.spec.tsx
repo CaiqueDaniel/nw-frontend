@@ -7,9 +7,20 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 import { useCharacterFormPresenter } from '~/modules/characters/features/CharacterForm/useCharacterFormPresenter';
 import { LocalCharacterFactory } from '~/modules/characters/factories/LocalCharacterFactory';
 import { doubleNavigator } from '../fixtures/doubleNavigator';
+import { Mocked } from 'vitest';
+import { TraitsService } from '~/modules/characters/services/TraitsService';
 
 describe('useCharacterFormPresenter', () => {
   const options = { wrapper: Provider };
+  let traitsService: Mocked<TraitsService>;
+
+  beforeAll(() => {
+    traitsService = {
+      getBreeds: vi.fn().mockResolvedValue([]),
+      getClasses: vi.fn().mockResolvedValue([]),
+      getRankings: vi.fn().mockResolvedValue([]),
+    };
+  });
 
   afterEach(() => {
     vi.clearAllMocks();
@@ -119,6 +130,16 @@ describe('useCharacterFormPresenter', () => {
 
   it('should be able to load the form', async () => {
     doubleCharacterRepository.get.mockResolvedValue(mockedCharacter);
+    traitsService.getBreeds.mockResolvedValue([{ id: 1, name: 'test' }]);
+    traitsService.getClasses.mockResolvedValue([
+      { id: 1, name: 'test' },
+      { id: 2, name: 'test' },
+    ]);
+    traitsService.getRankings.mockResolvedValue([
+      { id: 1, name: 'test' },
+      { id: 2, name: 'test' },
+      { id: 3, name: 'test' },
+    ]);
 
     const charData = {
       BreedId: mockedCharacter.BreedId,
@@ -160,6 +181,28 @@ describe('useCharacterFormPresenter', () => {
       expect(result.current.charData).toEqual(charData);
       expect(result.current.isFetching).toBe(false);
       expect(result.current.isSubmiting).toBe(false);
+      expect(result.current.breeds).toHaveLength(1);
+      expect(result.current.classes).toHaveLength(2);
+      expect(result.current.rankings).toHaveLength(3);
+    });
+  });
+
+  it('should be able to handle error when load the form', async () => {
+    traitsService.getBreeds.mockRejectedValue(new Error());
+    traitsService.getClasses.mockRejectedValue(new Error());
+    traitsService.getRankings.mockRejectedValue(new Error());
+
+    const { result } = renderHook(
+      () => useCharacterFormPresenter({ characterId: '123' }),
+      options
+    );
+
+    expect(result.current.isFetching).toBe(true);
+
+    await waitFor(() => {
+      expect(result.current.breeds).toHaveLength(0);
+      expect(result.current.classes).toHaveLength(0);
+      expect(result.current.rankings).toHaveLength(0);
     });
   });
 
@@ -241,6 +284,7 @@ describe('useCharacterFormPresenter', () => {
           repository: doubleCharacterRepository,
           factory: new LocalCharacterFactory(),
           navigator: doubleNavigator,
+          traitsService,
         }}
       >
         {children}

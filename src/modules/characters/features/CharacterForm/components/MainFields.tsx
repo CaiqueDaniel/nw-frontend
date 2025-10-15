@@ -1,4 +1,4 @@
-import { Box, Grid2, TextField, Typography } from '@mui/material';
+import { Box, Grid2, MenuItem, TextField, Typography } from '@mui/material';
 import { Field } from 'formik';
 import { Form } from '~/modules/shared/infra/components/Form/Form';
 import { CharacterSectionFormData } from '../CharacterFormData';
@@ -15,12 +15,16 @@ import psycheImg from '~/assets/images/psyche.png';
 import vitalityImg from '~/assets/images/vitality.png';
 import magResistance from '~/assets/images/magical-resistance.png';
 import { FloatField } from '~/modules/shared/infra/components/FloatField';
+import { TraitData } from '~/modules/characters/services/TraitsService';
 
 export function MainFields({
   initialValues,
   onSubmit,
   onCancel,
   validation,
+  breeds,
+  classes,
+  rankings,
 }: Props) {
   return (
     <Form<CharacterSectionFormData>
@@ -73,10 +77,14 @@ export function MainFields({
                   />
                 </Grid2>
 
-                <Grid2 container spacing={2} mb={2} pl={3}>
+                <Grid2 container spacing={2} mb={2} pl={3} size={12}>
                   <Grid2 size={4}>
                     <Field
                       as={TextField}
+                      select
+                      children={breeds.map(({ id, name }) => (
+                        <MenuItem value={id}>{name}</MenuItem>
+                      ))}
                       name="BreedId"
                       label="Raça"
                       required
@@ -87,9 +95,13 @@ export function MainFields({
                   </Grid2>
                   <Grid2 size={4}>
                     <Field
+                      select
                       as={TextField}
                       name="ClassId"
                       label="Classe"
+                      children={classes.map(({ id, name }) => (
+                        <MenuItem value={id}>{name}</MenuItem>
+                      ))}
                       required
                       fullWidth
                       helperText={errors.ClassId}
@@ -98,11 +110,15 @@ export function MainFields({
                   </Grid2>
                   <Grid2 size={4}>
                     <Field
+                      select
                       as={TextField}
                       name="RankingId"
                       label="Ranking"
                       required
                       fullWidth
+                      children={rankings.map(({ id, name }) => (
+                        <MenuItem value={id}>{name}</MenuItem>
+                      ))}
                       helperText={errors.RankingId}
                       error={Boolean(errors.RankingId)}
                     />
@@ -481,4 +497,7 @@ type Props = {
   initialValues: CharacterSectionFormData;
   validation: any;
   isSubmiting: boolean;
+  breeds: TraitData[];
+  classes: TraitData[];
+  rankings: TraitData[];
 };

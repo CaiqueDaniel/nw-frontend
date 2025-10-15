@@ -3,8 +3,17 @@ import { Box, CircularProgress, Typography } from '@mui/material';
 import { MainFields } from './components/MainFields';
 
 export function CharacterForm(props: Props) {
-  const { isSubmiting, isFetching, validation, charData, onSubmit, onCancel } =
-    useCharacterFormPresenter(props);
+  const {
+    isSubmiting,
+    isFetching,
+    validation,
+    charData,
+    breeds,
+    classes,
+    rankings,
+    onSubmit,
+    onCancel,
+  } = useCharacterFormPresenter(props);
 
   if (isFetching)
     return (
@@ -42,6 +51,9 @@ export function CharacterForm(props: Props) {
         onSubmit={onSubmit}
         onCancel={onCancel}
         isSubmiting={isSubmiting}
+        breeds={breeds}
+        classes={classes}
+        rankings={rankings}
       />
     </Box>
   );

@@ -4,13 +4,18 @@ import { CharacterFormData } from '../../domain/CharacterFactory';
 import { number, object, string } from 'yup';
 import { Character } from '../../domain/Character';
 import { CharacterSectionFormData } from './CharacterFormData';
+import { TraitData } from '../../services/TraitsService';
 
 export function useCharacterFormPresenter({ characterId }: Props) {
-  const { factory, repository, navigator } = useCharacterFormContext();
+  const { factory, repository, navigator, traitsService } =
+    useCharacterFormContext();
   const [isSubmiting, setIsSubmiting] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
   const [charData, setCharData] =
     useState<CharacterSectionFormData>(emptyCharValues);
+  const [breeds, setBreeds] = useState<TraitData[]>([]);
+  const [classes, setClasses] = useState<TraitData[]>([]);
+  const [rankings, setRankings] = useState<TraitData[]>([]);
 
   const onSubmit = async (values: CharacterSectionFormData) => {
     setCharData(values);
@@ -63,11 +68,16 @@ export function useCharacterFormPresenter({ characterId }: Props) {
       .finally(() => setIsFetching(false));
   }, [characterId]);
 
+  useEffect(fetchTraits, []);
+
   return {
     isSubmiting,
     isFetching,
     validation,
     charData,
+    breeds,
+    classes,
+    rankings,
     onSubmit,
     onCancel,
     save,
@@ -114,6 +124,20 @@ export function useCharacterFormPresenter({ characterId }: Props) {
       ResourceType: character.Attributes.ResourceType,
       ResourceId: String(character.Attributes.ResourceId),
     };
+  }
+
+  function fetchTraits() {
+    Promise.all([
+      traitsService.getBreeds(),
+      traitsService.getClasses(),
+      traitsService.getRankings(),
+    ])
+      .then(([breeds, classes, rankings]) => {
+        setBreeds(breeds);
+        setClasses(classes);
+        setRankings(rankings);
+      })
+      .catch(console.error);
   }
 }
 

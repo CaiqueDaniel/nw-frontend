@@ -11,6 +11,7 @@ export function useCharacterFormPresenter({ characterId }: Props) {
     useCharacterFormContext();
   const [isSubmiting, setIsSubmiting] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
+  const [isFetchingTraits, setIsFetchingTraits] = useState(false);
   const [charData, setCharData] =
     useState<CharacterSectionFormData>(emptyCharValues);
   const [breeds, setBreeds] = useState<TraitData[]>([]);
@@ -73,6 +74,7 @@ export function useCharacterFormPresenter({ characterId }: Props) {
   return {
     isSubmiting,
     isFetching,
+    isFetchingTraits,
     validation,
     charData,
     breeds,
@@ -127,6 +129,8 @@ export function useCharacterFormPresenter({ characterId }: Props) {
   }
 
   function fetchTraits() {
+    setIsFetchingTraits(true);
+
     Promise.all([
       traitsService.getBreeds(),
       traitsService.getClasses(),
@@ -137,7 +141,8 @@ export function useCharacterFormPresenter({ characterId }: Props) {
         setClasses(classes);
         setRankings(rankings);
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsFetchingTraits(false));
   }
 }
 

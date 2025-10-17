@@ -4,11 +4,11 @@ import { AuthMiddlewareContext } from './infra/middlewares/AuthMiddleware/AuthMi
 import { useGlobalAccessToken } from './infra/hooks/useGlobalAccessToken';
 import { NavbarContext } from './infra/features/Navbar/NavbarContext';
 import { useGlobalUserRoles } from './infra/hooks/useGlobalUserRoles';
-import { MemoryAccessTokenManager } from './infra/services/MemoryAccessTokenManager';
 import { MemoryJWTDecoderTokenService } from './infra/services/MemoryJWTDecoderTokenService';
+import { BrowserAccessTokenManager } from './infra/services/BrowserAccessTokenManager';
 
 export function SharedProviders({ children }: PropsWithChildren) {
-  const tokenManager = useMemo(() => new MemoryAccessTokenManager(), []);
+  const tokenManager = useMemo(() => new BrowserAccessTokenManager(), []);
   const tokenDecoderService = useMemo(
     () => new MemoryJWTDecoderTokenService(),
     []

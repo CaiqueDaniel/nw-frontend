@@ -25,6 +25,7 @@ export function MainFields({
   breeds,
   classes,
   rankings,
+  isFetchingTraits,
 }: Props) {
   return (
     <Form<CharacterSectionFormData>
@@ -77,53 +78,57 @@ export function MainFields({
                   />
                 </Grid2>
 
-                <Grid2 container spacing={2} mb={2} pl={3} size={12}>
-                  <Grid2 size={4}>
-                    <FastField
-                      as={TextField}
-                      select
-                      children={breeds.map(({ id, name }) => (
-                        <MenuItem value={id}>{name}</MenuItem>
-                      ))}
-                      name="BreedId"
-                      label="Raça"
-                      required
-                      fullWidth
-                      helperText={errors.BreedId}
-                      error={Boolean(errors.BreedId)}
-                    />
+                {isFetchingTraits ? (
+                  <></>
+                ) : (
+                  <Grid2 container spacing={2} mb={2} pl={3} size={12}>
+                    <Grid2 size={4}>
+                      <FastField
+                        as={TextField}
+                        select
+                        children={breeds.map(({ id, name }) => (
+                          <MenuItem value={id}>{name}</MenuItem>
+                        ))}
+                        name="BreedId"
+                        label="Raça"
+                        required
+                        fullWidth
+                        helperText={errors.BreedId}
+                        error={Boolean(errors.BreedId)}
+                      />
+                    </Grid2>
+                    <Grid2 size={4}>
+                      <FastField
+                        select
+                        as={TextField}
+                        name="ClassId"
+                        label="Classe"
+                        children={classes.map(({ id, name }) => (
+                          <MenuItem value={id}>{name}</MenuItem>
+                        ))}
+                        required
+                        fullWidth
+                        helperText={errors.ClassId}
+                        error={Boolean(errors.ClassId)}
+                      />
+                    </Grid2>
+                    <Grid2 size={4}>
+                      <FastField
+                        select
+                        as={TextField}
+                        name="RankingId"
+                        label="Ranking"
+                        required
+                        fullWidth
+                        children={rankings.map(({ id, name }) => (
+                          <MenuItem value={id}>{name}</MenuItem>
+                        ))}
+                        helperText={errors.RankingId}
+                        error={Boolean(errors.RankingId)}
+                      />
+                    </Grid2>
                   </Grid2>
-                  <Grid2 size={4}>
-                    <FastField
-                      select
-                      as={TextField}
-                      name="ClassId"
-                      label="Classe"
-                      children={classes.map(({ id, name }) => (
-                        <MenuItem value={id}>{name}</MenuItem>
-                      ))}
-                      required
-                      fullWidth
-                      helperText={errors.ClassId}
-                      error={Boolean(errors.ClassId)}
-                    />
-                  </Grid2>
-                  <Grid2 size={4}>
-                    <FastField
-                      select
-                      as={TextField}
-                      name="RankingId"
-                      label="Ranking"
-                      required
-                      fullWidth
-                      children={rankings.map(({ id, name }) => (
-                        <MenuItem value={id}>{name}</MenuItem>
-                      ))}
-                      helperText={errors.RankingId}
-                      error={Boolean(errors.RankingId)}
-                    />
-                  </Grid2>
-                </Grid2>
+                )}
 
                 <Box
                   sx={{
@@ -497,6 +502,7 @@ type Props = {
   initialValues: CharacterSectionFormData;
   validation: any;
   isSubmiting: boolean;
+  isFetchingTraits: boolean;
   breeds: TraitData[];
   classes: TraitData[];
   rankings: TraitData[];

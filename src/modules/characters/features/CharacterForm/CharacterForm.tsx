@@ -6,6 +6,7 @@ export function CharacterForm(props: Props) {
   const {
     isSubmiting,
     isFetching,
+    isFetchingTraits,
     validation,
     charData,
     breeds,
@@ -51,6 +52,7 @@ export function CharacterForm(props: Props) {
         onSubmit={onSubmit}
         onCancel={onCancel}
         isSubmiting={isSubmiting}
+        isFetchingTraits={isFetchingTraits}
         breeds={breeds}
         classes={classes}
         rankings={rankings}

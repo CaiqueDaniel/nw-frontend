@@ -1,5 +1,5 @@
 import { Box, Grid2, MenuItem, TextField, Typography } from '@mui/material';
-import { Field } from 'formik';
+import { FastField } from 'formik';
 import { Form } from '~/modules/shared/infra/components/Form/Form';
 import { CharacterSectionFormData } from '../CharacterFormData';
 import { FormSubmitControls } from './FormSubmitControls';
@@ -55,7 +55,7 @@ export function MainFields({
             <Grid2 container spacing={2}>
               <Grid2 container size={6}>
                 <Grid2 size={6} pl={3}>
-                  <Field
+                  <FastField
                     as={TextField}
                     name="Name"
                     label="Nome"
@@ -67,7 +67,7 @@ export function MainFields({
                 </Grid2>
 
                 <Grid2 size={6}>
-                  <Field
+                  <FastField
                     as={TextField}
                     name="Codename"
                     label="Apelido"
@@ -79,7 +79,7 @@ export function MainFields({
 
                 <Grid2 container spacing={2} mb={2} pl={3} size={12}>
                   <Grid2 size={4}>
-                    <Field
+                    <FastField
                       as={TextField}
                       select
                       children={breeds.map(({ id, name }) => (
@@ -94,7 +94,7 @@ export function MainFields({
                     />
                   </Grid2>
                   <Grid2 size={4}>
-                    <Field
+                    <FastField
                       select
                       as={TextField}
                       name="ClassId"
@@ -109,7 +109,7 @@ export function MainFields({
                     />
                   </Grid2>
                   <Grid2 size={4}>
-                    <Field
+                    <FastField
                       select
                       as={TextField}
                       name="RankingId"
@@ -143,7 +143,7 @@ export function MainFields({
                   >
                     História Pregressa
                   </Typography>
-                  <Field
+                  <FastField
                     as={TextField}
                     name="History"
                     placeholder="As aventuras que levam até aqui..."
@@ -159,7 +159,7 @@ export function MainFields({
 
               <Grid2 container size={6} pr={3}>
                 <Grid2 size={6}>
-                  <Field
+                  <FastField
                     sx={{ mb: 1 }}
                     as={IntegerField}
                     name="Age"
@@ -169,7 +169,7 @@ export function MainFields({
                     error={Boolean(errors.Age)}
                   />
 
-                  <Field
+                  <FastField
                     sx={{ mb: 1 }}
                     as={FloatField}
                     name="Weight"
@@ -179,7 +179,7 @@ export function MainFields({
                     error={Boolean(errors.Weight)}
                   />
 
-                  <Field
+                  <FastField
                     sx={{ mb: 1 }}
                     as={FloatField}
                     name="Height"
@@ -189,7 +189,7 @@ export function MainFields({
                     error={Boolean(errors.Height)}
                   />
 
-                  <Field
+                  <FastField
                     sx={{ mb: 1 }}
                     as={IntegerField}
                     name="Level"
@@ -202,7 +202,7 @@ export function MainFields({
                 </Grid2>
 
                 <Grid2 size={6}>
-                  <Field
+                  <FastField
                     sx={{ mb: 1 }}
                     as={IntegerField}
                     name="Experience"
@@ -213,7 +213,7 @@ export function MainFields({
                     error={Boolean(errors.Experience)}
                   />
 
-                  <Field
+                  <FastField
                     sx={{ mb: 1 }}
                     as={IntegerField}
                     name="Sanity"
@@ -224,7 +224,7 @@ export function MainFields({
                     error={Boolean(errors.Sanity)}
                   />
 
-                  <Field
+                  <FastField
                     sx={{ mb: 1 }}
                     as={FloatField}
                     name="Money"
@@ -256,7 +256,7 @@ export function MainFields({
 
                   <Grid2 container spacing={1}>
                     <Grid2 size={6} className="bg-with-darker-tile" p={2}>
-                      <Field
+                      <FastField
                         as={AttributesPointsField}
                         adornament={
                           <img
@@ -274,7 +274,7 @@ export function MainFields({
                         sx={{ mb: 2 }}
                       />
 
-                      <Field
+                      <FastField
                         as={AttributesPointsField}
                         adornament={
                           <img
@@ -292,7 +292,7 @@ export function MainFields({
                         sx={{ mb: 2 }}
                       />
 
-                      <Field
+                      <FastField
                         as={AttributesPointsField}
                         adornament={
                           <img
@@ -310,7 +310,7 @@ export function MainFields({
                         sx={{ mb: 2 }}
                       />
 
-                      <Field
+                      <FastField
                         as={AttributesPointsField}
                         adornament={
                           <img
@@ -328,7 +328,7 @@ export function MainFields({
                         sx={{ mb: 2 }}
                       />
 
-                      <Field
+                      <FastField
                         as={AttributesPointsField}
                         adornament={
                           <img
@@ -346,7 +346,7 @@ export function MainFields({
                         sx={{ mb: 2 }}
                       />
 
-                      <Field
+                      <FastField
                         as={AttributesPointsField}
                         adornament={
                           <img
@@ -366,7 +366,7 @@ export function MainFields({
                     </Grid2>
 
                     <Grid2 size={6} className="bg-with-darker-tile" p={2}>
-                      <Field
+                      <FastField
                         as={AttributesPointsField}
                         adornament={
                           <img
@@ -384,7 +384,7 @@ export function MainFields({
                         sx={{ mb: 2 }}
                       />
 
-                      <Field
+                      <FastField
                         as={AttributesPointsField}
                         adornament={
                           <img
@@ -402,7 +402,7 @@ export function MainFields({
                         sx={{ mb: 2 }}
                       />
 
-                      <Field
+                      <FastField
                         as={AttributesPointsField}
                         adornament={
                           <img
@@ -420,7 +420,7 @@ export function MainFields({
                         sx={{ mb: 2 }}
                       />
 
-                      <Field
+                      <FastField
                         as={AttributesPointsField}
                         name="ResourceType"
                         label="Tipo de Recurso"
@@ -430,7 +430,7 @@ export function MainFields({
                         sx={{ mb: 2 }}
                       />
 
-                      <Field
+                      <FastField
                         as={AttributesPointsField}
                         name="ResourceId"
                         label="ID do Recurso"
@@ -457,7 +457,7 @@ export function MainFields({
                 </Typography>
 
                 <Box px={3}>
-                  <Field
+                  <FastField
                     as={TextField}
                     name="Appearance"
                     label="Aparência"
@@ -470,7 +470,7 @@ export function MainFields({
                     sx={{ mb: 3 }}
                   />
 
-                  <Field
+                  <FastField
                     as={TextField}
                     name="Personality"
                     label="Personalidade"

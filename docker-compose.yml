@@ -2,14 +2,20 @@ services:
   nw-frontend:
     image: node:22-alpine
     working_dir: /app
-    container_name: nw-frontend
+    container_name: namelessworld_frontend
     stdin_open: true
     tty: true
-    entrypoint: ["sh"]
+    command: sh -c "apk add --no-cache wget && npm install && npm run dev"
     ports:
       - "5173:5173"
     volumes:
       - .:/app
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:5173"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
     environment:
       VITE_ENV: "${VITE_ENV:-development}"
       VITE_BASE_API_URL: "${VITE_BASE_API_URL:-http://localhost:5000/api}"
